@@ -1,25 +1,20 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // Import navigation hook
 
-const WelcomeScreen = () => {
-  const navigation = useNavigation(); // Use navigation hook without types
-
+const WelcomeScreen = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
-      {/* Image */}
       <Image 
         source={require('../assets/welcome_300x300.png')} 
         style={styles.image}
       />
-      
       <Text style={styles.title}>First Time Flyer</Text>
       <Text style={styles.subheading}>Taking the stress out of the airport experience</Text>
-
+      
       {/* Start Button - Navigates to HelloWorldScreen */}
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('HelloWorldScreen')} // Log for now, add navigation later
+        onPress={() => navigation.navigate('HelloWorldScreen')} 
       >
         <Text style={styles.buttonText}>Let's Fly!</Text>
       </TouchableOpacity>
@@ -34,43 +29,50 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     backgroundColor: 'white',
+    // Apply a soft linear gradient in React Native using a library like react-native-linear-gradient
   },
   title: {
-    fontSize: 35,
-    fontWeight: 'bold',
-    marginBottom: 30,
+    fontSize: 36,
+    fontWeight: '600',
+    marginBottom: 20,
     color: '#333',
+    textAlign: 'center',
+    fontFamily: 'Roboto',  // Optional modern font, make sure it is linked
   },
   subheading: {
     fontSize: 18,
     textAlign: 'center',
-    color: '#666',
-    marginBottom: 50,
+    color: '#777',
+    marginBottom: 40,
+    fontFamily: 'Roboto',  // Optional modern font
   },
   button: {
-    backgroundColor: '#81C784',  // Softer green color
+    backgroundColor: '#81C784',  // Softer green
     borderWidth: 1,
-    borderColor: '#66BB6A',  // Slightly darker green border
-    paddingVertical: 15,
+    borderColor: '#66BB6A',  // Darker green
+    paddingVertical: 16,
     paddingHorizontal: 40,
-    borderRadius: 6,
-    marginBottom: 12,
+    borderRadius: 30,  // Large rounded corners for modern feel
+    marginBottom: 15,
     alignItems: 'center',
-    width: '60%',
-    shadowColor: '#000', // Adds a shadow effect
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 6,
+    width: '70%',  // Slightly wider button
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.1,
+    shadowRadius: 15,
+    elevation: 5,  // Android shadow elevation
   },
   buttonText: {
     fontSize: 16,
-    color: '#333',
+    color: '#fff',  // White text for contrast
     fontWeight: 'bold',
+    fontFamily: 'Roboto', // Optional modern font
   },
   image: {
-    width: 300,  
-    height: 300, 
-    marginBottom: 40,  
+    width: 280,  // Slightly smaller image for better balance
+    height: 280,
+    borderRadius: 20,  // Rounded corners for image
+    marginBottom: 30,
   },
 });
 
