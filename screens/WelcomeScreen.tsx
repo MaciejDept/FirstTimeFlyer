@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: 'white',
+    backgroundColor: '#E8E8E8',
     // Apply a soft linear gradient in React Native using a library like react-native-linear-gradient
   },
   title: {
@@ -47,9 +47,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',  // Optional modern font
   },
   button: {
-    backgroundColor: '#81C784',  // Softer green
+    backgroundColor: '#A68B6B',
+    borderColor: '#8C6B4D',
     borderWidth: 1,
-    borderColor: '#66BB6A',  // Darker green
     paddingVertical: 16,
     paddingHorizontal: 40,
     borderRadius: 30,  // Large rounded corners for modern feel
