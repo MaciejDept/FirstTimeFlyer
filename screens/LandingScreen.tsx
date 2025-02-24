@@ -1,52 +1,45 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const HelloWorldScreen = ({ navigation }: any) => {
+const LandingScreen = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       
-      <Text style={styles.title}>Pre Trip Inspection</Text>
+      <Text style={styles.title}>Landing</Text>
       
       <View style={styles.listContainer}>
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
           <Text style={styles.bulletText} onPress={() => navigation.navigate('WelcomeScreen')}>
-            Check flight details
+            Disembark the plane and follow signs to immigration or baggage claim
           </Text>
         </View>
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
           <Text style={styles.bulletText} onPress={() => navigation.navigate('WelcomeScreen')}>
-            Online check-in and print/save boarding pass
+            Proceed to passport control
           </Text>
         </View>
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
           <Text style={styles.bulletText} onPress={() => navigation.navigate('WelcomeScreen')}>
-            Pack bags according to airline rules
+            Retrieve your luggage
           </Text>
         </View>
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
           <Text style={styles.bulletText} onPress={() => navigation.navigate('WelcomeScreen')}>
-            Set travel reminders
+            Exit the airport
           </Text>
         </View>
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
           <Text style={styles.bulletText} onPress={() => navigation.navigate('WelcomeScreen')}>
-            Confirm airport transport
-          </Text>
-        </View>
-
-        <View style={styles.bulletContainer}>
-          <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('WelcomeScreen')}>
-            Check health/safety requirements
+            Choose transportation to your destination
           </Text>
         </View>
       </View>
@@ -69,8 +62,8 @@ const HelloWorldScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',  // Center all content vertically
-    alignItems: 'center',      // Center all content horizontally
+    justifyContent: 'center',
+    alignItems: 'center',  
     padding: 20,
     backgroundColor: '#E8E8E8',
   },
@@ -85,17 +78,17 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   bulletContainer: {
-    flexDirection: 'row', // Align the bullet and text horizontally
-    alignItems: 'center', // Center items vertically within the container
-    marginBottom: 15, // Space between bullet points
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    marginBottom: 15, 
     justifyContent: 'center',
   },
   bullet: {
-    width: 10,  // Size of the bullet
-    height: 10, // Size of the bullet
-    borderRadius: 5,  // Make the bullet a circle
-    backgroundColor: '#A68B6B',  // Brown color for the bullet
-    marginRight: 10,  // Space between the bullet and text
+    width: 10,  
+    height: 10, 
+    borderRadius: 5,  
+    backgroundColor: '#A68B6B',  
+    marginRight: 10,
   },
   bulletText: {
     fontSize: 18,
@@ -103,7 +96,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',  // Center buttons horizontally
+    justifyContent: 'center',
     width: '80%',
   },
   button: {
@@ -125,4 +118,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HelloWorldScreen;
+export default LandingScreen;

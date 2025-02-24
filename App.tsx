@@ -2,7 +2,10 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import WelcomeScreen from './screens/WelcomeScreen';
-import HelloWorldScreen from './screens/HelloWorldScreen';
+import PreTripScreen from './screens/PreTripScreen';
+import FlightDayScreen from './screens/FlightDayScreen';
+import LandingScreen from './screens/LandingScreen';
+import ChecklistScreen from './screens/ChecklistScreen';
 
 // Create the stack navigator
 const Stack = createNativeStackNavigator();
@@ -14,12 +17,27 @@ export default function App() {
         <Stack.Screen 
           name="WelcomeScreen" 
           component={WelcomeScreen} 
-          options={{ headerShown: false }}  // Hide header for this screen
+          options={{ headerShown: false }}
         />
         <Stack.Screen 
-          name="HelloWorldScreen" 
-          component={HelloWorldScreen} 
-          options={{ headerShown: false }}  // Hide header for this screen
+          name="PreTripScreen" 
+          component={PreTripScreen} 
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="FlightDayScreen" 
+          component={FlightDayScreen} 
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="LandingScreen" 
+          component={LandingScreen} 
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="ChecklistScreen" 
+          component={ChecklistScreen} 
+          options={{ headerShown: true }}
         />
       </Stack.Navigator>
     </NavigationContainer>
