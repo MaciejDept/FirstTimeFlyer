@@ -5,53 +5,53 @@ const PreTripScreen = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       
-      {/* Image added */}
+      {/* Image */}
       <Image 
         source={require('../assets/dodo_inspect.png')} 
         style={styles.image}  
       />  
 
-      <Text style={styles.title}>Pre Trip Inspection</Text>
+      <Text style={styles.title}>Pre-Trip Inspection</Text>
       
       <View style={styles.listContainer}>
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('WelcomeScreen')}>
+          <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripCheckFlightDetails')}>
             Check flight details
           </Text>
         </View>
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('WelcomeScreen')}>
+          <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripOnlineCheckIn')}>
             Online check-in and print/save boarding pass
           </Text>
         </View>
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('WelcomeScreen')}>
+          <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripPackYourBags')}>
             Pack bags according to airline rules
           </Text>
         </View>
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('WelcomeScreen')}>
+          <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripSetTravelReminders')}>
             Set travel reminders
           </Text>
         </View>
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('WelcomeScreen')}>
+          <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripAirportTransfer')}>
             Confirm airport transport
           </Text>
         </View>
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('WelcomeScreen')}>
+          <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripHealthSafety')}>
             Check health/safety requirements
           </Text>
         </View>
@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
   bulletText: {
     fontSize: 18,
     color: '#333',
+    textDecorationLine: 'underline',
   },
   image: {
     width: 200,  

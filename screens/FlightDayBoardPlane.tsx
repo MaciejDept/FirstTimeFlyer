@@ -1,45 +1,31 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const FlightDayScreen = ({ navigation }: any) => {
+const FlightDayBoardPlane = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       
-      <Text style={styles.title}>Flight Day</Text>
+      <Text style={styles.title}>Board the Plane</Text>
       
       <View style={styles.listContainer}>
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayArriveAtAirport')}>
-            Arrive at the airport 2 to 3 hours early
+          <Text style={styles.bulletText}>
+            Boarding process: Airlines typically board by groups or seat rows, so listen for your group/row number.
           </Text>
         </View>
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayCheckIn')}>
-            Check in (if not done online) and drop off luggage
+          <Text style={styles.bulletText}>
+            Boarding pass and ID: Be ready to show your boarding pass and ID to the gate agent.
           </Text>
         </View>
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDaySecurityCheck')}>
-            Go through security
-          </Text>
-        </View>
-
-        <View style={styles.bulletContainer}>
-          <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayFindGate')}>
-            Find your gate and wait for boarding
-          </Text>
-        </View>
-
-        <View style={styles.bulletContainer}>
-          <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayBoardPlane')}>
-            Board the plane and enjoy the flight!
+          <Text style={styles.bulletText}>
+            Once you board, find your seat. Place your carry-on luggage in the overhead compartment or under the seat in front of you.
           </Text>
         </View>
       </View>
@@ -50,10 +36,6 @@ const FlightDayScreen = ({ navigation }: any) => {
           <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
 
-        {/* Next Button */}
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LandingScreen')}>
-          <Text style={styles.buttonText}>Next</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
@@ -93,7 +75,7 @@ const styles = StyleSheet.create({
   bulletText: {
     fontSize: 18,
     color: '#333',
-    textDecorationLine: 'underline',
+    maxWidth: '90%',
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -119,4 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FlightDayScreen;
+export default FlightDayBoardPlane;

@@ -10,35 +10,35 @@ const LandingScreen = ({ navigation }: any) => {
       <View style={styles.listContainer}>
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('WelcomeScreen')}>
+          <Text style={styles.bulletText} onPress={() => navigation.navigate('LandingDisembarkPlane')}>
             Disembark the plane and follow signs to immigration or baggage claim
           </Text>
         </View>
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('WelcomeScreen')}>
+          <Text style={styles.bulletText} onPress={() => navigation.navigate('LandingPassportControl')}>
             Proceed to passport control
           </Text>
         </View>
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('WelcomeScreen')}>
+          <Text style={styles.bulletText} onPress={() => navigation.navigate('LandingRetrieveLuggage')}>
             Retrieve your luggage
           </Text>
         </View>
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('WelcomeScreen')}>
+          <Text style={styles.bulletText} onPress={() => navigation.navigate('LandingExitAirport')}>
             Exit the airport
           </Text>
         </View>
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('WelcomeScreen')}>
+          <Text style={styles.bulletText} onPress={() => navigation.navigate('LandingChooseTransport')}>
             Choose transportation to your destination
           </Text>
         </View>
@@ -51,7 +51,7 @@ const LandingScreen = ({ navigation }: any) => {
         </TouchableOpacity>
 
         {/* Next Button */}
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ChecklistScreen')}>
           <Text style={styles.buttonText}>Next</Text>
         </TouchableOpacity>
       </View>
@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
   bulletText: {
     fontSize: 18,
     color: '#333',
+    textDecorationLine: 'underline',
   },
   buttonContainer: {
     flexDirection: 'row',

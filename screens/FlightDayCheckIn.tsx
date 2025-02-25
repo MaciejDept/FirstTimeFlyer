@@ -1,45 +1,24 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const FlightDayScreen = ({ navigation }: any) => {
+const FlightDayCheckIn = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       
-      <Text style={styles.title}>Flight Day</Text>
+      <Text style={styles.title}>Check-in & Drop off Luggage</Text>
       
       <View style={styles.listContainer}>
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayArriveAtAirport')}>
-            Arrive at the airport 2 to 3 hours early
+          <Text style={styles.bulletText}>
+            If you didn’t check in online, head to the check-in counters at the airport. The airline staff will verify your identity and give you your boarding pass.
           </Text>
         </View>
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayCheckIn')}>
-            Check in (if not done online) and drop off luggage
-          </Text>
-        </View>
-
-        <View style={styles.bulletContainer}>
-          <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDaySecurityCheck')}>
-            Go through security
-          </Text>
-        </View>
-
-        <View style={styles.bulletContainer}>
-          <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayFindGate')}>
-            Find your gate and wait for boarding
-          </Text>
-        </View>
-
-        <View style={styles.bulletContainer}>
-          <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayBoardPlane')}>
-            Board the plane and enjoy the flight!
+          <Text style={styles.bulletText}>
+            Drop off your checked luggage (if you have any). Make sure it’s labeled properly with your contact info.
           </Text>
         </View>
       </View>
@@ -50,10 +29,6 @@ const FlightDayScreen = ({ navigation }: any) => {
           <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
 
-        {/* Next Button */}
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LandingScreen')}>
-          <Text style={styles.buttonText}>Next</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
@@ -68,7 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#E8E8E8',
   },
   title: {
-    fontSize: 35,
+    fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 50,
     color: '#333',
@@ -93,7 +68,7 @@ const styles = StyleSheet.create({
   bulletText: {
     fontSize: 18,
     color: '#333',
-    textDecorationLine: 'underline',
+    maxWidth: '90%',
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -119,4 +94,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FlightDayScreen;
+export default FlightDayCheckIn;
