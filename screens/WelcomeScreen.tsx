@@ -13,7 +13,7 @@ const WelcomeScreen = ({ navigation }: any) => {
       
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('PreTripScreen')} 
+        onPress={() => navigation.navigate('IntroScreen')} 
       >
         <Text style={styles.buttonText}>Let's Fly!</Text>
       </TouchableOpacity>

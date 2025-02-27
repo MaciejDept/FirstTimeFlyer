@@ -26,6 +26,7 @@ import LandingPassportControl from './screens/LandingPassportControl';
 import LandingRetrieveLuggage from './screens/LandingRetrieveLuggage';
 import ChecklistScreen from './screens/ChecklistScreen';
 import Congratulations from './screens/Congratulations';
+import IntroScreen from './screens/IntroScreen';
 
 // Create the stack navigator
 const Stack = createNativeStackNavigator();
@@ -59,6 +60,7 @@ export default function App() {
         <Stack.Screen name="LandingRetrieveLuggage" component={LandingRetrieveLuggage} options={{ headerShown: false }} />
         <Stack.Screen name="ChecklistScreen" component={ChecklistScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Congratulations" component={Congratulations} options={{ headerShown: false }} />
+        <Stack.Screen name="IntroScreen" component={IntroScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
