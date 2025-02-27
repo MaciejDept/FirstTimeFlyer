@@ -1,69 +1,94 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
+import React, { useState } from 'react';
+import { 
+  View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, Dimensions 
+} from 'react-native';
 
-const WelcomeScreen = ({ navigation }: any) => {
+const { height } = Dimensions.get('window'); 
+
+const IntroScreen = ({ navigation }: any) => {
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.innerContainer}>
-        
-        <Text style={styles.title}>Welcome!</Text>
+    <View style={styles.container}>
+      <ScrollView 
+        style={styles.scrollContainer} 
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.innerContainer}>
+          
+          <Text style={styles.title}>Welcome!</Text>
 
-        <Text style={styles.introText}>
-          Flying for the first time can be a stressful experience ... 
-          {"\n\n"}
-          No worries, we’re here to help! 
-          {"\n\n"}
-          From packing your bags to landing at your destination, we’ll guide you through each step of the way. 
-          {"\n\n"}
-          Every flight journey consists of 3 parts
-        </Text>
+          <Image 
+            source={require('../assets/welcome_dodo.png')}
+            style={styles.image}
+          />
 
-        <View style={styles.listContainer}>
-          {/* Bullet points with navigation links */}
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripScreen')}>
-              Pre-Trip Inspection
-            </Text>
+          <Text style={styles.introText}>
+            Flying for the first time can be a stressful experience ... 
+            {"\n\n"}
+            No worries, we’re here to help! 
+            {"\n\n"}
+            From packing your bags to landing at your destination, we’ll guide you through each step of the way. 
+            {"\n\n"}
+            Every flight journey consists of 3 parts:
+          </Text>
+
+          <View style={styles.listContainer}>
+            <TouchableOpacity 
+              style={styles.bulletContainer} 
+              onPress={() => navigation.navigate('PreTripScreen')}
+            >
+              <View style={styles.bullet} />
+              <Text style={styles.bulletText}>Pre-Trip Inspection</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+              style={styles.bulletContainer} 
+              onPress={() => navigation.navigate('FlightDayScreen')}
+            >
+              <View style={styles.bullet} />
+              <Text style={styles.bulletText}>Flight Day</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+              style={styles.bulletContainer} 
+              onPress={() => navigation.navigate('LandingScreen')}
+            >
+              <View style={styles.bullet} />
+              <Text style={styles.bulletText}>Landing</Text>
+            </TouchableOpacity>
           </View>
 
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayScreen')}>
-              Flight Day
-            </Text>
-          </View>
+          <Text style={styles.introText}>
+            Follow each step of the journey and mark completed items on the Checklist. You’ve got this! Let’s make your first flight fun and stress-free. 
+            {"\n\n"}
+            Oh, and don’t worry, even the dodo learned to soar… just in its own way!
+          </Text>
 
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('LandingScreen')}>
-              Landing
-            </Text>
-          </View>
         </View>
+      </ScrollView>
 
-        <Text style={styles.introText}>
-          Follow each step of the journey and tick-off completed items on the Checklist. You’ve got this! Let’s make your first flight fun and stress-free. 
-          {"\n\n"}
-          Oh, and don’t worry, even the dodo learned to soar… just in its own way!
-        </Text>
+      {/* Gradient Overlay for Scroll Hint */}
+      <View style={styles.scrollHint} />
 
-        {/* Image before the button */}
-        <Image 
-          source={require('../assets/welcome_dodo.png')}
-          style={styles.image}
-        />
-
-        {/* Continue Button */}
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('PreTripScreen')}
+      {/* Back & Next Buttons */}
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity 
+          style={[styles.navButton, styles.backButton]} 
+          onPress={() => navigation.goBack()}
         >
-          <Text style={styles.buttonText}>Continue</Text>
+          <Text style={styles.navButtonText}>Back</Text>
         </TouchableOpacity>
 
+        <TouchableOpacity 
+          style={[styles.navButton, styles.nextButton]} 
+          onPress={() => navigation.navigate('PreTripScreen')}
+        >
+          <Text style={styles.navButtonText}>Next</Text>
+        </TouchableOpacity>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -72,8 +97,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#E8E8E8',
   },
-  innerContainer: {
+  scrollContainer: {
     flex: 1,
+  },
+  scrollContent: {
+    paddingBottom: 100,
+  },
+  innerContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
@@ -81,19 +111,25 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 35,
     fontWeight: 'bold',
-    marginTop: 90,
-    marginBottom: 50,
+    marginTop: 60,
+    marginBottom: 5,
     color: '#333',
     textAlign: 'center',
+  },
+  image: {
+    width: 200,
+    height: 200,
+    borderRadius: 20,
+    marginBottom: 20,
   },
   introText: {
     fontSize: 18,
     color: '#333',
     textAlign: 'center',
-    marginBottom: 30,
+    marginBottom: 20,
   },
   listContainer: {
-    marginBottom: 30,
+    marginBottom: 20,
   },
   bulletContainer: {
     flexDirection: 'row',
@@ -115,28 +151,45 @@ const styles = StyleSheet.create({
     color: '#333',
     textDecorationLine: 'underline',
   },
-  image: {
-    width: 200,
-    height: 200,
-    borderRadius: 20,
-    marginTop: 0,
-    marginBottom: 20,
+  /* Gradient Overlay for Scroll Hint */
+  scrollHint: {
+    position: 'absolute',
+    bottom: 80, 
+    left: 0,
+    right: 0,
+    height: 50,
+    backgroundColor: 'rgba(232, 232, 232, 0.9)',
   },
-  button: {
+  /* Fixed Buttons at the Bottom */
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+    right: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  navButton: {
+    flex: 1,
+    paddingVertical: 12,
+    borderRadius: 25,
+    alignItems: 'center',
+    borderWidth: 1,
+    marginHorizontal: 5,
+  },
+  backButton: {
     backgroundColor: '#A68B6B',
     borderColor: '#8C6B4D',
-    borderWidth: 1,
-    paddingVertical: 12,
-    paddingHorizontal: 30,
-    borderRadius: 25,
-    marginBottom: 10,
-    alignItems: 'center',
   },
-  buttonText: {
+  nextButton: {
+    backgroundColor: '#A68B6B',
+    borderColor: '#8C6B4D',
+  },
+  navButtonText: {
     fontSize: 16,
-    color: '#fff',
     fontWeight: 'bold',
+    color: '#fff',
   },
 });
 
-export default WelcomeScreen;
+export default IntroScreen;
