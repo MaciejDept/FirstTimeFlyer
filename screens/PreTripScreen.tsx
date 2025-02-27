@@ -94,7 +94,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     alignItems: 'center', 
     marginBottom: 15, 
-    justifyContent: 'center',
+    marginLeft: 40,
+    marginRight: 40,
+    justifyContent: 'flex-start',
   },
   bullet: {
     width: 10,  

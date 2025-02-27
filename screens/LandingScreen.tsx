@@ -1,9 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 const LandingScreen = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
+      
+      {/* Image above the title */}
+      <Image 
+        source={require('../assets/dodo_landing.png')} 
+        style={styles.image}
+      />
       
       <Text style={styles.title}>Landing</Text>
       
@@ -67,6 +73,11 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#E8E8E8',
   },
+  image: {
+    width: 250,  
+    height: 250,  
+    marginBottom: 20,  
+  },
   title: {
     fontSize: 35,
     fontWeight: 'bold',
@@ -81,7 +92,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     alignItems: 'center', 
     marginBottom: 15, 
-    justifyContent: 'center',
+    marginLeft: 40,
+    marginRight: 40,
+    justifyContent: 'flex-start',
   },
   bullet: {
     width: 10,  

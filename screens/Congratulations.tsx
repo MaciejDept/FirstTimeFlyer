@@ -1,10 +1,16 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 const Congratulations = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       
+      {/* Image above the title */}
+      <Image 
+        source={require('../assets/congrats_dodo.png')}
+        style={styles.image}
+      />
+
       <Text style={styles.title}>Congratulations!</Text>
       
       <View style={styles.messageContainer}>
@@ -22,7 +28,12 @@ const Congratulations = ({ navigation }: any) => {
       <View style={styles.buttonContainer}>
         {/* Back to Home Button */}
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('WelcomeScreen')}>
-          <Text style={styles.buttonText}>Back to Home</Text>
+          <Text style={styles.buttonText}>Home</Text>
+        </TouchableOpacity>
+
+        {/* Back Button */}
+        <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
+          <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -36,6 +47,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',  
     padding: 20,
     backgroundColor: '#E8E8E8',
+  },
+  image: {
+    width: 300,  
+    height: 300,
+    borderRadius: 20,  
+    marginBottom: 20,
   },
   title: {
     fontSize: 35,
@@ -68,6 +85,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginBottom: 10,
     alignItems: 'center',
+    width: '100%',  
   },
   buttonText: {
     fontSize: 16,

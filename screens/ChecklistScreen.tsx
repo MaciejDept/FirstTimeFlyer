@@ -65,6 +65,8 @@ const ChecklistScreen = ({ navigation }: any) => {
     });
   };
 
+  const isAllChecked = checkedItems.every(item => item); // Check if all items are checked
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Travel Checklist</Text>
@@ -91,14 +93,18 @@ const ChecklistScreen = ({ navigation }: any) => {
         ))}
       </ScrollView>
 
-      {/* Back & Next Buttons at the Bottom */}
+      {/* Back & Complete Buttons at the Bottom */}
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
+        <TouchableOpacity style={[styles.button, { backgroundColor: '#A68B6B' }]} onPress={() => navigation.goBack()}>
           <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Congratulations')}>
-          <Text style={styles.buttonText}>Next</Text>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: isAllChecked ? '#A68B6B' : '#B4B4B4' }]}
+          onPress={() => navigation.navigate('Congratulations')}
+          disabled={!isAllChecked}
+        >
+          <Text style={styles.buttonText}>Complete</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -110,6 +116,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding: 20,
+    paddingTop: 60,
     backgroundColor: '#E8E8E8',
   },
   title: {
@@ -117,32 +124,37 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333',
     textAlign: 'center',
-    marginVertical: 20,
+    marginVertical: 30, // Move the title down more
   },
   scrollContainer: {
     paddingVertical: 10,
     width: '100%',
   },
   section: {
-    marginBottom: 15,
+    marginBottom: 20, 
   },
   sectionTitle: {
     fontSize: 22,
     fontWeight: 'bold',
     color: '#333',
-    marginBottom: 10,
+    marginBottom: 30,  
     textAlign: 'center',
   },
   bulletContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
+    width: '100%',
+    paddingVertical: 5, 
+    paddingHorizontal: 10, 
   },
   bulletText: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#333',
     marginLeft: 10,
     flexShrink: 1,
+    flexWrap: 'wrap',  
+    width: '90%',      
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -152,7 +164,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   button: {
-    backgroundColor: '#A68B6B',
     paddingVertical: 12,
     paddingHorizontal: 30,
     borderRadius: 25,
