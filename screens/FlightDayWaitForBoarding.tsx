@@ -56,12 +56,12 @@ const FlightDayWaitForBoarding = ({ navigation }: any) => {
           <Text style={styles.navButtonText}>Back</Text>
         </TouchableOpacity>
 
-        {/* Next Button */}
+        {/* Checklist Button */}
         <TouchableOpacity 
           style={[styles.navButton, styles.checklistButton]} 
-          onPress={() => navigation.navigate('FlightDayBoardPlane')}
+          onPress={() => navigation.navigate('ChecklistScreen')}  // Navigates to Checklist screen
         >
-          <Text style={styles.navButtonText}>Next</Text>
+          <Text style={styles.navButtonText}>Checklist</Text>
         </TouchableOpacity>
       </View>
     </View>
