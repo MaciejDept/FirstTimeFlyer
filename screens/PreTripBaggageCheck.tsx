@@ -1,9 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
 
 const PreTripBaggageCheck = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
+      {/* Image */}
+      <Image 
+        source={require('../assets/icon.png')} 
+        style={styles.image}  
+      />
+
       {/* Title */}
       <Text style={styles.title}>Baggage Check</Text>
 
@@ -40,7 +46,7 @@ const PreTripBaggageCheck = ({ navigation }: any) => {
       {/* Gradient Overlay for Scroll Hint */}
       <View style={styles.scrollHint} />
 
-      {/* Bottom Button */}
+      {/* Bottom Buttons */}
       <View style={styles.buttonContainer}>
         {/* Back Button */}
         <TouchableOpacity 
@@ -48,6 +54,14 @@ const PreTripBaggageCheck = ({ navigation }: any) => {
           onPress={() => navigation.goBack()}
         >
           <Text style={styles.navButtonText}>Back</Text>
+        </TouchableOpacity>
+
+        {/* Checklist Button */}
+        <TouchableOpacity 
+          style={[styles.navButton, styles.checklistButton]} 
+          onPress={() => navigation.navigate('ChecklistScreen')}
+        >
+          <Text style={styles.navButtonText}>Checklist</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -92,7 +106,7 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: '#A68B6B', // Teal
+    backgroundColor: '#5DA3A3', // Teal (same as PreTripCheckFlightDetails)
     marginRight: 10,
   },
   bulletText: {
@@ -102,6 +116,13 @@ const styles = StyleSheet.create({
   },
   boldText: {
     fontWeight: 'bold',
+  },
+  image: {
+    width: 200,
+    height: 200,
+    borderRadius: 20,
+    marginBottom: 40,
+    alignSelf: 'center', // Center image horizontally
   },
   scrollHint: {
     position: 'absolute',
@@ -117,7 +138,7 @@ const styles = StyleSheet.create({
     left: 20,
     right: 20,
     flexDirection: 'row',
-    justifyContent: 'center', // Center the button
+    justifyContent: 'space-between',
   },
   navButton: {
     flex: 1,
@@ -128,8 +149,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   backButton: {
-    backgroundColor: '#A68B6B', // Teal
-    borderColor: '#8C6B4D', // Darker Teal
+    backgroundColor: '#5DA3A3', // Teal (same as PreTripCheckFlightDetails)
+    borderColor: '#417D7D', // Darker Teal (same as PreTripCheckFlightDetails)
+  },
+  checklistButton: {
+    backgroundColor: '#5DA3A3', // Teal (same as PreTripCheckFlightDetails)
+    borderColor: '#417D7D', // Darker Teal (same as PreTripCheckFlightDetails)
   },
   navButtonText: {
     fontSize: 16,

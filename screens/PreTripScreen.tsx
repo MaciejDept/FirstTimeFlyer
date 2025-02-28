@@ -30,6 +30,13 @@ const PreTripScreen = ({ navigation }: any) => {
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
+          <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripBaggageCheck')}>
+            Check your baggage allowance and airline's baggage policies
+          </Text>
+        </View>
+
+        <View style={styles.bulletContainer}>
+          <View style={styles.bullet}></View>
           <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripPackYourBags')}>
             Pack bags according to airline rules
           </Text>
@@ -59,13 +66,19 @@ const PreTripScreen = ({ navigation }: any) => {
       
       <View style={styles.buttonContainer}>
         {/* Back Button */}
-        <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
-          <Text style={styles.buttonText}>Back</Text>
+        <TouchableOpacity 
+          style={[styles.navButton, styles.backButton]} 
+          onPress={() => navigation.goBack()}
+        >
+          <Text style={styles.navButtonText}>Back</Text>
         </TouchableOpacity>
 
         {/* Next Button */}
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('FlightDayScreen')}>
-          <Text style={styles.buttonText}>Next</Text>
+        <TouchableOpacity 
+          style={[styles.navButton, styles.nextButton]} 
+          onPress={() => navigation.navigate('FlightDayScreen')}
+        >
+          <Text style={styles.navButtonText}>Next</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -121,22 +134,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '80%',
   },
-  button: {
+  navButton: {
+    flex: 1,
+    paddingVertical: 12,
+    borderRadius: 25,
+    alignItems: 'center',
+    borderWidth: 1,
+    marginHorizontal: 5,
+  },
+  backButton: {
     backgroundColor: '#5DA3A3', // Teal from IntroScreen
     borderColor: '#417D7D', // Darker Teal from IntroScreen
-    borderWidth: 1,
-    paddingVertical: 12,
-    paddingHorizontal: 30,
-    borderRadius: 25,
-    marginBottom: 10,
-    alignItems: 'center',
-    flex: 1,
-    marginHorizontal: 10,
   },
-  buttonText: {
+  nextButton: {
+    backgroundColor: '#5DA3A3', // Teal from IntroScreen
+    borderColor: '#417D7D', // Darker Teal from IntroScreen
+  },
+  navButtonText: {
     fontSize: 16,
-    color: '#fff', // White text, same as in IntroScreen
     fontWeight: 'bold',
+    color: '#fff', // White text, same as in IntroScreen
   },
 });
 
