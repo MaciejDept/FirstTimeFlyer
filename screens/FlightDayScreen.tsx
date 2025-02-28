@@ -24,7 +24,7 @@ const FlightDayScreen = ({ navigation }: any) => {
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
           <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayCheckIn')}>
-            Check in (if not done online) and drop off luggage
+            Check in and drop off luggage
           </Text>
         </View>
 
@@ -38,14 +38,28 @@ const FlightDayScreen = ({ navigation }: any) => {
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
           <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayFindGate')}>
-            Find your gate and wait for boarding
+            Find your gate
+          </Text>
+        </View>
+
+        <View style={styles.bulletContainer}>
+          <View style={styles.bullet}></View>
+          <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayWaitForBoarding')}>
+            Wait for boarding
           </Text>
         </View>
 
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
           <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayBoardPlane')}>
-            Board the plane and enjoy the flight!
+            Board the plane
+          </Text>
+        </View>
+
+        <View style={styles.bulletContainer}>
+          <View style={styles.bullet}></View>
+          <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayEnjoyFlight')}>
+            Enjoy the flight!
           </Text>
         </View>
       </View>

@@ -17,7 +17,7 @@ const LandingScreen = ({ navigation }: any) => {
         <View style={styles.bulletContainer}>
           <View style={styles.bullet}></View>
           <Text style={styles.bulletText} onPress={() => navigation.navigate('LandingDisembarkPlane')}>
-            Disembark the plane and follow signs to immigration or baggage claim
+            Disembark the plane and follow signs to airport
           </Text>
         </View>
 
