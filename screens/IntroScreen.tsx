@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: '#A68B6B',
+    backgroundColor: '#417D7D', // Darker Teal
     marginRight: 10,
   },
   bulletText: {
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   /* Gradient Overlay for Scroll Hint */
   scrollHint: {
     position: 'absolute',
-    bottom: 80, 
+    bottom: 80,
     left: 0,
     right: 0,
     height: 50,
@@ -178,12 +178,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   backButton: {
-    backgroundColor: '#A68B6B',
-    borderColor: '#8C6B4D',
+    backgroundColor: '#5DA3A3', // Teal
+    borderColor: '#417D7D', // Darker Teal
   },
   nextButton: {
-    backgroundColor: '#A68B6B',
-    borderColor: '#8C6B4D',
+    backgroundColor: '#5DA3A3', // Teal
+    borderColor: '#417D7D', // Darker Teal
   },
   navButtonText: {
     fontSize: 16,

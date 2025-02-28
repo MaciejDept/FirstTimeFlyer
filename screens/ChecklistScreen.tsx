@@ -84,6 +84,7 @@ const ChecklistScreen = ({ navigation }: any) => {
                   <Checkbox
                     status={checkedItems[absoluteIndex] ? 'checked' : 'unchecked'}
                     onPress={() => toggleCheckbox(absoluteIndex)}
+                    color="#417D7D" // Teal checkbox color
                   />
                   <Text style={styles.bulletText}>{item}</Text>
                 </View>
@@ -95,12 +96,12 @@ const ChecklistScreen = ({ navigation }: any) => {
 
       {/* Back & Complete Buttons at the Bottom */}
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={[styles.button, { backgroundColor: '#A68B6B' }]} onPress={() => navigation.goBack()}>
+        <TouchableOpacity style={[styles.button, { backgroundColor: '#5DA3A3' }]} onPress={() => navigation.goBack()}>
           <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[styles.button, { backgroundColor: isAllChecked ? '#A68B6B' : '#B4B4B4' }]}
+          style={[styles.button, { backgroundColor: isAllChecked ? '#5DA3A3' : '#B4B4B4' }]}
           onPress={() => navigation.navigate('Congratulations')}
           disabled={!isAllChecked}
         >
@@ -117,14 +118,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     paddingTop: 60,
-    backgroundColor: '#E8E8E8',
+    backgroundColor: '#E8E8E8', // Same background as other screens
   },
   title: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#333', // Text color consistent with other screens
     textAlign: 'center',
-    marginVertical: 30, // Move the title down more
+    marginVertical: 30, // Adjusted margin for the title
   },
   scrollContainer: {
     paddingVertical: 10,
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#333', // Section title text color
     marginBottom: 30,  
     textAlign: 'center',
   },
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
   },
   bulletText: {
     fontSize: 16,
-    color: '#333',
+    color: '#333', // Consistent text color for bullet text
     marginLeft: 10,
     flexShrink: 1,
     flexWrap: 'wrap',  
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    color: '#fff',
+    color: '#fff', // Button text color consistent with others
     fontWeight: 'bold',
   },
 });

@@ -26,13 +26,13 @@ const Congratulations = ({ navigation }: any) => {
       </View>
       
       <View style={styles.buttonContainer}>
-        {/* Back to Home Button */}
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('WelcomeScreen')}>
+        {/* Home Button */}
+        <TouchableOpacity style={[styles.button, { backgroundColor: '#5DA3A3' }]} onPress={() => navigation.navigate('WelcomeScreen')}>
           <Text style={styles.buttonText}>Home</Text>
         </TouchableOpacity>
 
         {/* Back Button */}
-        <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
+        <TouchableOpacity style={[styles.button, { backgroundColor: '#5DA3A3' }]} onPress={() => navigation.goBack()}>
           <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
       </View>
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',  
     padding: 20,
-    backgroundColor: '#E8E8E8',
+    backgroundColor: '#E8E8E8', // Consistent background color
   },
   image: {
     width: 300,  
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: 'bold',
     marginBottom: 30,
-    color: '#333',
+    color: '#333', // Consistent text color
     textAlign: 'center',
   },
   messageContainer: {
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   message: {
     fontSize: 20,
-    color: '#333',
+    color: '#333', // Consistent message text color
     textAlign: 'center',
     marginBottom: 15,
     maxWidth: '80%',
@@ -77,19 +77,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    backgroundColor: '#A68B6B',
-    borderColor: '#8C6B4D',
+    backgroundColor: '#5DA3A3', // Teal button color
+    borderColor: '#417D7D', // Matching border color for consistency
     borderWidth: 1,
     paddingVertical: 12,
     paddingHorizontal: 30,
     borderRadius: 25,
     marginBottom: 10,
     alignItems: 'center',
-    width: '100%',  
+    width: '100%',
   },
   buttonText: {
     fontSize: 16,
-    color: '#fff',
+    color: '#fff', // White text for button
     fontWeight: 'bold',
   },
 });

@@ -78,13 +78,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',  
     padding: 20,
-    backgroundColor: '#E8E8E8',
+    backgroundColor: '#E8E8E8', // Same as IntroScreen
   },
   title: {
     fontSize: 35,
     fontWeight: 'bold',
     marginBottom: 50,
-    color: '#333',
+    color: '#333', // Same as IntroScreen
     textAlign: 'center',
   },
   listContainer: {
@@ -102,12 +102,12 @@ const styles = StyleSheet.create({
     width: 10,  
     height: 10, 
     borderRadius: 5,  
-    backgroundColor: '#A68B6B',  
+    backgroundColor: '#417D7D',  // Darker Teal from IntroScreen
     marginRight: 10,
   },
   bulletText: {
     fontSize: 18,
-    color: '#333',
+    color: '#333', // Same as IntroScreen
     textDecorationLine: 'underline',
   },
   image: {
@@ -122,8 +122,8 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   button: {
-    backgroundColor: '#A68B6B',
-    borderColor: '#8C6B4D',
+    backgroundColor: '#5DA3A3', // Teal from IntroScreen
+    borderColor: '#417D7D', // Darker Teal from IntroScreen
     borderWidth: 1,
     paddingVertical: 12,
     paddingHorizontal: 30,
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    color: '#fff',
+    color: '#fff', // White text, same as in IntroScreen
     fontWeight: 'bold',
   },
 });

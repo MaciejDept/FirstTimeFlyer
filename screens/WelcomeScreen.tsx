@@ -45,26 +45,26 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto', 
   },
   button: {
-    backgroundColor: '#A68B6B',
-    borderColor: '#8C6B4D',
-    borderWidth: 1,
+    backgroundColor: '#2A6478', // Deep teal (strong contrast)
+    borderColor: '#1F4B5A', // Darker teal for a sleek border
+    borderWidth: 2,
     paddingVertical: 16,
     paddingHorizontal: 40,
-    borderRadius: 30,  
+    borderRadius: 30,
     marginBottom: 15,
     alignItems: 'center',
-    width: '70%',  
+    width: '70%',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.15,
     shadowRadius: 15,
-    elevation: 5, 
+    elevation: 5,
   },
   buttonText: {
     fontSize: 16,
-    color: '#fff',  
+    color: '#FFFFFF', // Crisp white for clarity
     fontWeight: 'bold',
-    fontFamily: 'Roboto', 
+    fontFamily: 'Roboto',
   },
   image: {
     width: 300,  
