@@ -1,69 +1,80 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Dimensions } from 'react-native';
+
+const { height } = Dimensions.get('window');
 
 const PreTripScreen = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       
-      {/* Image */}
-      <Image 
-        source={require('../assets/dodo_inspect.png')} 
-        style={styles.image}  
-      />  
+      <ScrollView 
+        style={styles.scrollContainer}
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* Image */}
+        <Image 
+          source={require('../assets/dodo_inspect.png')} 
+          style={styles.image}  
+        />  
 
-      <Text style={styles.title}>Pre-Trip Inspection</Text>
-      
-      <View style={styles.listContainer}>
-        <View style={styles.bulletContainer}>
-          <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripCheckFlightDetails')}>
-            Check flight details
-          </Text>
-        </View>
+        <Text style={styles.title}>Pre-Trip Inspection</Text>
+        
+        <View style={styles.listContainer}>
+          <View style={styles.bulletContainer}>
+            <View style={styles.bullet}></View>
+            <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripCheckFlightDetails')}>
+              Check flight details
+            </Text>
+          </View>
 
-        <View style={styles.bulletContainer}>
-          <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripOnlineCheckIn')}>
-            Online check-in and print/save boarding pass
-          </Text>
-        </View>
+          <View style={styles.bulletContainer}>
+            <View style={styles.bullet}></View>
+            <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripOnlineCheckIn')}>
+              Online check-in and print/save boarding pass
+            </Text>
+          </View>
 
-        <View style={styles.bulletContainer}>
-          <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripBaggageCheck')}>
-            Check your baggage allowance and airline's baggage policies
-          </Text>
-        </View>
+          <View style={styles.bulletContainer}>
+            <View style={styles.bullet}></View>
+            <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripBaggageCheck')}>
+              Check your baggage allowance and airline's baggage policies
+            </Text>
+          </View>
 
-        <View style={styles.bulletContainer}>
-          <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripPackYourBags')}>
-            Pack bags according to airline rules
-          </Text>
-        </View>
+          <View style={styles.bulletContainer}>
+            <View style={styles.bullet}></View>
+            <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripPackYourBags')}>
+              Pack bags according to airline rules
+            </Text>
+          </View>
 
-        <View style={styles.bulletContainer}>
-          <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripSetTravelReminders')}>
-            Set travel reminders
-          </Text>
-        </View>
+          <View style={styles.bulletContainer}>
+            <View style={styles.bullet}></View>
+            <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripSetTravelReminders')}>
+              Set travel reminders
+            </Text>
+          </View>
 
-        <View style={styles.bulletContainer}>
-          <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripAirportTransfer')}>
-            Confirm airport transport
-          </Text>
-        </View>
+          <View style={styles.bulletContainer}>
+            <View style={styles.bullet}></View>
+            <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripAirportTransfer')}>
+              Confirm airport transport
+            </Text>
+          </View>
 
-        <View style={styles.bulletContainer}>
-          <View style={styles.bullet}></View>
-          <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripHealthSafety')}>
-            Check health/safety requirements
-          </Text>
+          <View style={styles.bulletContainer}>
+            <View style={styles.bullet}></View>
+            <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripHealthSafety')}>
+              Check health/safety requirements
+            </Text>
+          </View>
         </View>
-      </View>
-      
+      </ScrollView>
+
+      {/* Fixed Buttons at the Bottom */}
+      <View style={styles.scrollHint} />
+
       <View style={styles.buttonContainer}>
         {/* Back Button */}
         <TouchableOpacity 
@@ -88,14 +99,18 @@ const PreTripScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',  
-    padding: 20,
     backgroundColor: '#E8E8E8',
+  },
+  scrollContainer: {
+    flex: 1,
+  },
+  scrollContent: {
+    paddingBottom: 120,
   },
   title: {
     fontSize: 35,
     fontWeight: 'bold',
+    marginTop: 20,
     marginBottom: 50,
     color: '#333',
     textAlign: 'center',
@@ -127,12 +142,17 @@ const styles = StyleSheet.create({
     width: 200,  
     height: 200,
     borderRadius: 20,  
-    marginBottom: 20,
+    marginBottom: 5,
+    alignSelf: 'center',
+    marginTop: 80,
   },
   buttonContainer: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+    right: 20,
     flexDirection: 'row',
-    justifyContent: 'center',
-    width: '80%',
+    justifyContent: 'space-between',
   },
   navButton: {
     flex: 1,
@@ -154,6 +174,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: '#fff',
+  },
+  scrollHint: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 120,
+    backgroundColor: 'rgba(232, 232, 232, 0.9)',
   },
 });
 
