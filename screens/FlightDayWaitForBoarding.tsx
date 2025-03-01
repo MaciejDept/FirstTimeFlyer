@@ -7,7 +7,7 @@ const FlightDayWaitForBoarding = ({ navigation }: any) => {
       
       {/* Image */}
       <Image 
-        source={require('../assets/icon.png')} 
+        source={require('../assets/page_logos/11.png')} 
         style={styles.image}  
       />
 
@@ -115,11 +115,11 @@ const styles = StyleSheet.create({
     lineHeight: 24, // Added lineHeight for better readability
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 300,
+    height: 300,
     borderRadius: 20,
-    marginBottom: 40,
-    alignSelf: 'center', // Center image horizontally
+    marginBottom: 20,
+    alignSelf: 'center',
   },
   scrollHint: {
     position: 'absolute',

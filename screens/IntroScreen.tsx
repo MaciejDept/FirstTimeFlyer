@@ -154,10 +154,10 @@ const styles = StyleSheet.create({
   /* Gradient Overlay for Scroll Hint */
   scrollHint: {
     position: 'absolute',
-    bottom: 80,
+    bottom: 0,
     left: 0,
     right: 0,
-    height: 50,
+    height: 120,
     backgroundColor: 'rgba(232, 232, 232, 0.9)',
   },
   /* Fixed Buttons at the Bottom */

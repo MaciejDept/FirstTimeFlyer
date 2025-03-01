@@ -7,7 +7,7 @@ const LandingPassportControl = ({ navigation }: any) => {
       
       {/* Image section placed above the title */}
       <Image 
-        source={require('../assets/icon.png')} // Use your actual image path
+        source={require('../assets/page_logos/15.png')} // Use your actual image path
         style={styles.image}  
       />
 
@@ -121,11 +121,11 @@ const styles = StyleSheet.create({
     lineHeight: 24, // Added lineHeight for better readability
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 300,
+    height: 300,
     borderRadius: 20,
-    marginBottom: 40,
-    alignSelf: 'center', // Center image horizontally
+    marginBottom: 20,
+    alignSelf: 'center',
   },
   scrollHint: {
     position: 'absolute',

@@ -6,7 +6,7 @@ const PreTripPackYourBags = ({ navigation }: any) => {
     <View style={styles.container}>
       {/* Image */}
       <Image 
-        source={require('../assets/icon.png')} // Replace with your actual image
+        source={require('../assets/page_logos/3.png')} // Replace with your actual image
         style={styles.image}  
       />
 
@@ -117,11 +117,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 300,
+    height: 300,
     borderRadius: 20,
-    marginBottom: 40,
-    alignSelf: 'center', // Center image horizontally
+    marginBottom: 20,
+    alignSelf: 'center',
   },
   scrollHint: {
     position: 'absolute',

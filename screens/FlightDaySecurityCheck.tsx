@@ -7,7 +7,7 @@ const FlightDaySecurityCheck = ({ navigation }: any) => {
       
       {/* Image section placed above the title */}
       <Image 
-        source={require('../assets/icon.png')} // Use your actual image path
+        source={require('../assets/page_logos/9.png')} // Use your actual image path
         style={styles.image}  
       />
 
@@ -91,11 +91,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   image: {
-    width: 200,  // Adjusted to match the FlightDayCheckIn image size
-    height: 200, // Adjusted to match the FlightDayCheckIn image size
-    borderRadius: 20, // Added rounded corners
-    marginBottom: 40, // Space below the image
-    alignSelf: 'center', // Centers the image horizontally
+    width: 300,
+    height: 300,
+    borderRadius: 20,
+    marginBottom: 20,
+    alignSelf: 'center',
   },
   listContainer: {
     justifyContent: 'center',

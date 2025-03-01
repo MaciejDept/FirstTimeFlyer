@@ -4,9 +4,8 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'rea
 const PreTripCheckFlightDetails = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
-      {/* Image */}
       <Image 
-        source={require('../assets/icon.png')} 
+        source={require('../assets/page_logos/1.png')} 
         style={styles.image}  
       />
 
@@ -17,51 +16,28 @@ const PreTripCheckFlightDetails = ({ navigation }: any) => {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Bullet points container */}
         <View style={styles.listContainer}>
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              <Text style={styles.boldText}>Flight number:</Text> Verify your flight number, departure time, and terminal.
-            </Text>
-          </View>
+          <Text style={styles.boldText}>Flight number:</Text>
+          <Text style={styles.paragraphText}>
+            Your flight number is a unique code assigned to your flight, found in your booking confirmation email, airline app, or e-ticket. For example, a British Airways flight might be BA567, while a Virgin Atlantic flight could be VS123. This number helps you locate your flight on airport screens and track any updates.
+          </Text>
 
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              <Text style={styles.boldText}>Airport and Terminal:</Text> Make sure you know which airport you’re flying out of and which terminal to go to. Most airports have multiple terminals, so getting this right will save you time.
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              <Text style={styles.boldText}>Test:</Text> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              <Text style={styles.boldText}>Test:</Text> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              <Text style={styles.boldText}>Test:</Text> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
-            </Text>
-          </View>
+          <Text style={styles.boldText}>Airport and Terminal:</Text>
+          <Text style={styles.paragraphText}>
+            Some cities, like London, have multiple airports (e.g., Heathrow, Gatwick, and Stansted), so double-check which one you're flying from. If using a taxi or ride service, confirm the correct airport to avoid last-minute stress.
+          </Text>
+          <Text style={styles.paragraphText}>
+            Airports are divided into terminals, with airlines usually operating from specific ones (e.g., Terminal 1, Terminal 2). Your terminal number is listed in your booking confirmation, airline app, or on the airport’s website. If you're unsure, check flight information screens upon arrival or ask airport staff—they’re there to help!
+          </Text>
+          <Text style={styles.paragraphText}>
+            Some terminals require extra time to reach, sometimes involving trains, shuttles, or long walks. Plan for a little extra time so you can navigate stress-free. If you're ever unsure, just follow the signs or ask for assistance.
+          </Text>
         </View>
       </ScrollView>
 
-      {/* Gradient Overlay for Scroll Hint */}
       <View style={styles.scrollHint} />
 
-      {/* Bottom Buttons */}
       <View style={styles.buttonContainer}>
-        {/* Back Button */}
         <TouchableOpacity 
           style={[styles.navButton, styles.backButton]} 
           onPress={() => navigation.goBack()}
@@ -69,7 +45,6 @@ const PreTripCheckFlightDetails = ({ navigation }: any) => {
           <Text style={styles.navButtonText}>Back</Text>
         </TouchableOpacity>
 
-        {/* Checklist Button */}
         <TouchableOpacity 
           style={[styles.navButton, styles.checklistButton]} 
           onPress={() => navigation.navigate('ChecklistScreen')}
@@ -85,8 +60,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#E8E8E8',
-    paddingTop: 40, // Space for title
-    paddingHorizontal: 20, // Add horizontal padding for better spacing
+    paddingTop: 40,
+    paddingHorizontal: 25,
   },
   scrollContainer: {
     flex: 1,
@@ -100,49 +75,42 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     color: '#333',
     textAlign: 'center',
-    marginHorizontal: 20, // Added margin for better spacing
+    marginHorizontal: 20,
   },
   listContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 30,
-    width: '100%', // Ensure full width
-  },
-  bulletContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20, // Increased bottom margin for spacing between points
     justifyContent: 'flex-start',
-    width: '90%', // Add some margin to the sides for better alignment
-  },
-  bullet: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: '#5DA3A3', // Teal
-    marginRight: 10,
-  },
-  bulletText: {
-    fontSize: 18,
-    color: '#333',
-    lineHeight: 24, // Added lineHeight for better readability
+    alignItems: 'flex-start',
+    marginBottom: 30,
+    width: '100%',
   },
   boldText: {
     fontWeight: 'bold',
+    fontSize: 20,
+    marginBottom: 20,
+    color: '#333',
+    marginHorizontal: 15,
+  },
+  paragraphText: {
+    fontSize: 18,
+    color: '#333',
+    marginBottom: 20,
+    lineHeight: 28,
+    textAlign: 'left',
+    marginHorizontal: 15,
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 300,
+    height: 300,
     borderRadius: 20,
-    marginBottom: 40,
-    alignSelf: 'center', // Center image horizontally
+    marginBottom: 20,
+    alignSelf: 'center',
   },
   scrollHint: {
     position: 'absolute',
-    bottom: 80,
+    bottom: 0,
     left: 0,
     right: 0,
-    height: 50,
+    height: 120,
     backgroundColor: 'rgba(232, 232, 232, 0.9)',
   },
   buttonContainer: {
@@ -162,12 +130,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   backButton: {
-    backgroundColor: '#5DA3A3', // Teal
-    borderColor: '#417D7D', // Darker Teal
+    backgroundColor: '#5DA3A3',
+    borderColor: '#417D7D',
   },
   checklistButton: {
-    backgroundColor: '#5DA3A3', // Teal
-    borderColor: '#417D7D', // Darker Teal
+    backgroundColor: '#5DA3A3',
+    borderColor: '#417D7D',
   },
   navButtonText: {
     fontSize: 16,
