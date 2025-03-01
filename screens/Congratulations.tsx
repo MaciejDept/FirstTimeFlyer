@@ -1,29 +1,35 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
 
 const Congratulations = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       
-      <Image 
-        source={require('../assets/congrats_dodo.png')}
-        style={styles.image}
-      />
+      <ScrollView 
+        contentContainerStyle={styles.scrollContent} 
+        showsVerticalScrollIndicator={false}
+      >
+        <Image 
+          source={require('../assets/congrats_dodo.png')}
+          style={styles.image}
+        />
 
-      <Text style={styles.title}>Congratulations!</Text>
-      
-      <View style={styles.messageContainer}>
-        <Text style={styles.message}>
-          Congrats on completing your first flight!
-        </Text>
-        <Text style={styles.message}>
-          Welcome to the world of travel.
-        </Text>
-        <Text style={styles.message}>
-          We can’t wait to see you soar again on your next adventure!
-        </Text>
-      </View>
-      
+        <Text style={styles.title}>Congratulations!</Text>
+        
+        <View style={styles.messageContainer}>
+          <Text style={styles.message}>
+            Congrats on completing your first flight!
+          </Text>
+          <Text style={styles.message}>
+            Welcome to the world of travel.
+          </Text>
+          <Text style={styles.message}>
+            We can’t wait to see you soar again on your next adventure!
+          </Text>
+        </View>
+      </ScrollView>
+
+      {/* Button Container (Stacked vertically) */}
       <View style={styles.buttonContainer}>
         {/* Home Button */}
         <TouchableOpacity style={[styles.button, { backgroundColor: '#5DA3A3' }]} onPress={() => navigation.navigate('WelcomeScreen')}>
@@ -42,10 +48,16 @@ const Congratulations = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',  
-    padding: 20,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     backgroundColor: '#E8E8E8',
+    paddingHorizontal: 20,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 20,
   },
   image: {
     width: 300,  
@@ -56,12 +68,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 35,
     fontWeight: 'bold',
-    marginBottom: 30,
+    marginBottom: 20,
     color: '#333',
     textAlign: 'center',
   },
   messageContainer: {
-    marginBottom: 40,
+    marginBottom: 30,
     alignItems: 'center',
   },
   message: {
@@ -72,8 +84,9 @@ const styles = StyleSheet.create({
     maxWidth: '80%',
   },
   buttonContainer: {
-    width: '80%',
+    width: '100%',
     alignItems: 'center',
+    paddingBottom: 20,
   },
   button: {
     backgroundColor: '#5DA3A3',
@@ -82,9 +95,9 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 30,
     borderRadius: 25,
-    marginBottom: 10,
+    marginBottom: 15,
+    width: '80%',
     alignItems: 'center',
-    width: '100%',
   },
   buttonText: {
     fontSize: 16,
