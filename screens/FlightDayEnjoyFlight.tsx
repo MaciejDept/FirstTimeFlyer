@@ -22,12 +22,22 @@ const FlightDayEnjoyFlight = ({ navigation }: any) => {
         <View style={commonStyles.listContainer}>
           <Text style={commonStyles.boldText}>Once you’re settled:</Text>
           <Text style={commonStyles.paragraphText}>
-            Enjoy your flight! Follow the crew’s instructions for safety procedures and seatbelt signs.
+            Well done! You’ve made it through the tough part, and now it’s time to relax and enjoy your flight. Listen carefully to the safety demonstration from the flight attendants—they’re there to ensure you have a safe and comfortable journey. Keep your seatbelt fastened when seated, and don’t hesitate to ask the crew if you need anything.
           </Text>
 
           <Text style={commonStyles.boldText}>Stay hydrated:</Text>
           <Text style={commonStyles.paragraphText}>
-            Drink plenty of water during the flight, and if it’s a long flight, take short walks or stretch to avoid stiffness.
+            Airplane cabins can be quite dry, so drinking water throughout your flight will help you feel refreshed. If it’s a long flight, try to stretch your legs occasionally or take a short walk up and down the aisle when it’s safe to do so. This helps prevent stiffness and keeps you comfortable.
+          </Text>
+
+          <Text style={commonStyles.boldText}>In-Flight Comfort:</Text>
+          <Text style={commonStyles.paragraphText}>
+            Feel free to adjust your seat for comfort, but be mindful of the person behind you. If you brought entertainment—like a book, music, or a movie—now is a great time to enjoy it. Some flights also offer onboard entertainment, so check your seat screen if available.
+          </Text>
+
+          <Text style={commonStyles.boldText}>Almost There!</Text>
+          <Text style={commonStyles.paragraphText}>
+            You’re doing amazingly! Take a deep breath, relax, and before you know it, you’ll be landing at your destination. Safe travels! 😊✈️
           </Text>
         </View>
       </ScrollView>

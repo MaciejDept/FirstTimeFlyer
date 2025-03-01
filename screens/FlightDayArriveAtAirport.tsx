@@ -7,7 +7,7 @@ const FlightDayArriveAtAirport = ({ navigation }: any) => {
     <View style={commonStyles.container}>
       {/* Image */}
       <Image 
-        source={require('../assets/page_logos/7.png')} // Replace with your actual image
+        source={require('../assets/page_logos/7.png')}
         style={commonStyles.image}  
       />
 
@@ -20,15 +20,17 @@ const FlightDayArriveAtAirport = ({ navigation }: any) => {
       >
         {/* Bullet points container */}
         <View style={commonStyles.listContainer}>
+          
           <Text style={commonStyles.boldText}>Arrive 2-3 hours before departure:</Text>
           <Text style={commonStyles.paragraphText}>
-            Arriving early gives you plenty of time to check in, go through security, and handle any unexpected delays.
+            It's a good idea to arrive at the airport a bit earlier than you might think. This will give you enough time to check in, go through security, and handle any unexpected delays, like long lines or last-minute changes. Being early also helps reduce any stress, so you can start your journey feeling calm and confident.
           </Text>
 
-          <Text style={commonStyles.boldText}>If you’re flying internationally, give yourself the full 3 hours:</Text>
+          <Text style={commonStyles.boldText}>International Flights:</Text>
           <Text style={commonStyles.paragraphText}>
-            International flights often require more time for check-in, security, and customs, so it’s important to plan ahead.
+            For international flights, it's especially important to arrive with plenty of time. There are a few extra steps, like check-in, security, and customs, that can take a little longer than on domestic flights. Giving yourself the full 3 hours ensures you won't feel rushed and can calmly go through the process. It's perfectly normal to feel a bit nervous, but know that there will be plenty of signs and helpful staff to guide you along the way.
           </Text>
+
         </View>
       </ScrollView>
 

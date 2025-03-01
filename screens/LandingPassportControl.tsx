@@ -7,7 +7,7 @@ const LandingPassportControl = ({ navigation }: any) => {
     <View style={commonStyles.container}>
       {/* Image */}
       <Image 
-        source={require('../assets/page_logos/15.png')} // Use your actual image path
+        source={require('../assets/page_logos/15.png')}
         style={commonStyles.image}  
       />
 
@@ -22,22 +22,22 @@ const LandingPassportControl = ({ navigation }: any) => {
         <View style={commonStyles.listContainer}>
           <Text style={commonStyles.boldText}>Immigration Process:</Text>
           <Text style={commonStyles.paragraphText}>
-            If traveling internationally, go to Immigration where you will need to present your passport.
+            If traveling internationally, head to the Immigration area. Here, you will need to present your passport. This step is important, but don't worry—it’s a routine part of the process, and the officers are there to help.
           </Text>
 
           <Text style={commonStyles.boldText}>Visa Check:</Text>
           <Text style={commonStyles.paragraphText}>
-            If required, the officer will check your visa or travel permit.
+            If required, the officer will check your visa or travel permit. This is a quick and standard procedure to make sure everything is in order. If you're unsure about anything, just ask the officer—they are used to helping travelers and will guide you through.
           </Text>
 
           <Text style={commonStyles.boldText}>Answer Questions:</Text>
           <Text style={commonStyles.paragraphText}>
-            Answer any questions the immigration officer may ask about your stay.
+            You may be asked a few simple questions by the immigration officer, like the purpose of your trip or how long you plan to stay. These questions are normal, and they help ensure that everything is clear and in place for your visit.
           </Text>
 
           <Text style={commonStyles.boldText}>Additional Documents:</Text>
           <Text style={commonStyles.paragraphText}>
-            Depending on the country, you may be asked to provide additional documents like hotel bookings or return flight details.
+            Depending on where you’re traveling, the officer might ask for additional documents such as hotel bookings, your return flight details, or proof of sufficient funds for your stay. If you have these documents ready, the process will go smoothly. Don’t stress—it's just a way to verify your travel plans.
           </Text>
         </View>
       </ScrollView>

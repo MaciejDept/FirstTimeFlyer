@@ -7,7 +7,7 @@ const FlightDaySecurityCheck = ({ navigation }: any) => {
     <View style={commonStyles.container}>
       {/* Image section placed above the title */}
       <Image 
-        source={require('../assets/page_logos/9.png')} // Use your actual image path
+        source={require('../assets/page_logos/9.png')}
         style={commonStyles.image}  
       />
 
@@ -22,22 +22,27 @@ const FlightDaySecurityCheck = ({ navigation }: any) => {
         <View style={commonStyles.listContainer}>
           <Text style={commonStyles.boldText}>Go to the security checkpoint:</Text>
           <Text style={commonStyles.paragraphText}>
-            You’ll need to remove any liquids, electronics, and possibly your shoes.
+            When you reach the security checkpoint, you’ll need to remove any liquids, electronics, and possibly your shoes. Don’t worry if you're unsure about what to do — the security staff is there to guide you. Just follow their instructions, and everything will be fine.
           </Text>
 
           <Text style={commonStyles.boldText}>Have your boarding pass and ID ready:</Text>
           <Text style={commonStyles.paragraphText}>
-            These will be required at the security checkpoint to proceed.
+            Make sure you have your boarding pass and ID handy, as you’ll need to show them at the security checkpoint. It’s a simple process — just have them out and ready, and the staff will help you move along smoothly.
           </Text>
 
           <Text style={commonStyles.boldText}>Liquids:</Text>
           <Text style={commonStyles.paragraphText}>
-            Ensure all liquids in your carry-on are under 100 ml and in a clear, resealable plastic bag.
+            If you’re carrying liquids in your carry-on, remember that they need to be in containers of 100 ml or less, and placed in a clear, resealable plastic bag. It's a good idea to prepare this in advance so you can quickly take it out when you're at the checkpoint. If you're unsure about any liquids, you can always check with a staff member.
+          </Text>
+
+          <Text style={commonStyles.boldText}>Laptops and Electronics:</Text>
+          <Text style={commonStyles.paragraphText}>
+            If you have a laptop or other larger electronics in your carry-on, you’ll need to remove them from your bag and place them in a separate bin for screening. This helps the security staff see clearly through your bag. It’s completely normal, and the staff will guide you through the process if needed.
           </Text>
 
           <Text style={commonStyles.boldText}>Metal detectors:</Text>
           <Text style={commonStyles.paragraphText}>
-            Be prepared to go through metal detectors and possibly have your carry-on bag scanned.
+            At the security checkpoint, you’ll likely need to go through a metal detector. It’s normal, and it’s just part of the process to keep everyone safe. If you have any items like jewelry or belts with metal, it’s best to take them off beforehand to avoid delays. You may also be asked to place your carry-on bag on a conveyor belt for screening.
           </Text>
         </View>
       </ScrollView>
