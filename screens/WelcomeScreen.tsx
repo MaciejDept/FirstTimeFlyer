@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto', 
   },
   button: {
-    backgroundColor: '#2A6478', // Deep teal (strong contrast)
-    borderColor: '#1F4B5A', // Darker teal for a sleek border
+    backgroundColor: '#2A6478',
+    borderColor: '#1F4B5A',
     borderWidth: 2,
     paddingVertical: 16,
     paddingHorizontal: 40,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    color: '#FFFFFF', // Crisp white for clarity
+    color: '#FFFFFF',
     fontWeight: 'bold',
     fontFamily: 'Roboto',
   },

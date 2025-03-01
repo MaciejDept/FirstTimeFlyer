@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',  
     padding: 20,
-    backgroundColor: '#E8E8E8', // Same as the other screens
+    backgroundColor: '#E8E8E8',
   },
   image: {
     width: 250,  
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: 'bold',
     marginBottom: 50,
-    color: '#333', // Consistent color with other screens
+    color: '#333',
     textAlign: 'center',
   },
   listContainer: {
@@ -100,12 +100,12 @@ const styles = StyleSheet.create({
     width: 10,  
     height: 10, 
     borderRadius: 5,  
-    backgroundColor: '#417D7D',  // Darker Teal to match the other screens
+    backgroundColor: '#417D7D',
     marginRight: 10,
   },
   bulletText: {
     fontSize: 18,
-    color: '#333', // Same text color for consistency
+    color: '#333',
     textDecorationLine: 'underline',
   },
   buttonContainer: {
@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   button: {
-    backgroundColor: '#5DA3A3', // Teal color for buttons to match others
-    borderColor: '#417D7D', // Darker teal border to match bullet color
+    backgroundColor: '#5DA3A3',
+    borderColor: '#417D7D',
     borderWidth: 1,
     paddingVertical: 12,
     paddingHorizontal: 30,
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    color: '#fff', // White text color for buttons
+    color: '#fff',
     fontWeight: 'bold',
   },
 });

@@ -91,13 +91,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',  
     padding: 20,
-    backgroundColor: '#E8E8E8', // Same as IntroScreen
+    backgroundColor: '#E8E8E8',
   },
   title: {
     fontSize: 35,
     fontWeight: 'bold',
     marginBottom: 50,
-    color: '#333', // Same as IntroScreen
+    color: '#333',
     textAlign: 'center',
   },
   listContainer: {
@@ -115,12 +115,12 @@ const styles = StyleSheet.create({
     width: 10,  
     height: 10, 
     borderRadius: 5,  
-    backgroundColor: '#417D7D',  // Darker Teal from IntroScreen
+    backgroundColor: '#417D7D',
     marginRight: 10,
   },
   bulletText: {
     fontSize: 18,
-    color: '#333', // Same as IntroScreen
+    color: '#333',
     textDecorationLine: 'underline',
   },
   image: {
@@ -143,17 +143,17 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   backButton: {
-    backgroundColor: '#5DA3A3', // Teal from IntroScreen
-    borderColor: '#417D7D', // Darker Teal from IntroScreen
+    backgroundColor: '#5DA3A3',
+    borderColor: '#417D7D',
   },
   nextButton: {
-    backgroundColor: '#5DA3A3', // Teal from IntroScreen
-    borderColor: '#417D7D', // Darker Teal from IntroScreen
+    backgroundColor: '#5DA3A3',
+    borderColor: '#417D7D',
   },
   navButtonText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#fff', // White text, same as in IntroScreen
+    color: '#fff',
   },
 });
 

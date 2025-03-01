@@ -5,7 +5,6 @@ const Congratulations = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       
-      {/* Image above the title */}
       <Image 
         source={require('../assets/congrats_dodo.png')}
         style={styles.image}
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',  
     padding: 20,
-    backgroundColor: '#E8E8E8', // Consistent background color
+    backgroundColor: '#E8E8E8',
   },
   image: {
     width: 300,  
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: 'bold',
     marginBottom: 30,
-    color: '#333', // Consistent text color
+    color: '#333',
     textAlign: 'center',
   },
   messageContainer: {
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
   },
   message: {
     fontSize: 20,
-    color: '#333', // Consistent message text color
+    color: '#333',
     textAlign: 'center',
     marginBottom: 15,
     maxWidth: '80%',
@@ -77,8 +76,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    backgroundColor: '#5DA3A3', // Teal button color
-    borderColor: '#417D7D', // Matching border color for consistency
+    backgroundColor: '#5DA3A3',
+    borderColor: '#417D7D',
     borderWidth: 1,
     paddingVertical: 12,
     paddingHorizontal: 30,
@@ -89,7 +88,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    color: '#fff', // White text for button
+    color: '#fff',
     fontWeight: 'bold',
   },
 });

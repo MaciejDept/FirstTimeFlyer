@@ -121,14 +121,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     paddingTop: 60,
-    backgroundColor: '#E8E8E8', // Same background as other screens
+    backgroundColor: '#E8E8E8',
   },
   title: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: '#333', // Text color consistent with other screens
+    color: '#333',
     textAlign: 'center',
-    marginVertical: 30, // Adjusted margin for the title
+    marginVertical: 30,
   },
   scrollContainer: {
     paddingVertical: 10,
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#333', // Section title text color
+    color: '#333',
     marginBottom: 30,  
     textAlign: 'center',
   },
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   },
   bulletText: {
     fontSize: 16,
-    color: '#333', // Consistent text color for bullet text
+    color: '#333',
     marginLeft: 10,
     flexShrink: 1,
     flexWrap: 'wrap',  
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    color: '#fff', // Button text color consistent with others
+    color: '#fff',
     fontWeight: 'bold',
   },
 });

@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: '#417D7D', // Darker Teal
+    backgroundColor: '#417D7D',
     marginRight: 10,
   },
   bulletText: {
@@ -178,12 +178,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   backButton: {
-    backgroundColor: '#5DA3A3', // Teal
-    borderColor: '#417D7D', // Darker Teal
+    backgroundColor: '#5DA3A3',
+    borderColor: '#417D7D',
   },
   nextButton: {
-    backgroundColor: '#5DA3A3', // Teal
-    borderColor: '#417D7D', // Darker Teal
+    backgroundColor: '#5DA3A3',
+    borderColor: '#417D7D',
   },
   navButtonText: {
     fontSize: 16,

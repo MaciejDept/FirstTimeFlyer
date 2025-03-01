@@ -1,156 +1,68 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
+import commonStyles from '../commonStyles'; // Import commonStyles
 
 const FlightDaySecurityCheck = ({ navigation }: any) => {
   return (
-    <View style={styles.container}>
-      
+    <View style={commonStyles.container}>
       {/* Image section placed above the title */}
       <Image 
         source={require('../assets/page_logos/9.png')} // Use your actual image path
-        style={styles.image}  
+        style={commonStyles.image}  
       />
 
-      <Text style={styles.title}>Security Check</Text>
+      <Text style={commonStyles.title}>Security Check</Text>
       
       <ScrollView 
-        style={styles.scrollContainer} 
-        contentContainerStyle={styles.scrollContent}
+        style={commonStyles.scrollContainer} 
+        contentContainerStyle={commonStyles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        <View style={styles.listContainer}>
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              Go to the security checkpoint. You’ll need to remove any liquids, electronics, and possibly your shoes.
-            </Text>
-          </View>
+        {/* Bullet points container */}
+        <View style={commonStyles.listContainer}>
+          <Text style={commonStyles.boldText}>Go to the security checkpoint:</Text>
+          <Text style={commonStyles.paragraphText}>
+            You’ll need to remove any liquids, electronics, and possibly your shoes.
+          </Text>
 
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              Have your boarding pass and ID ready.
-            </Text>
-          </View>
+          <Text style={commonStyles.boldText}>Have your boarding pass and ID ready:</Text>
+          <Text style={commonStyles.paragraphText}>
+            These will be required at the security checkpoint to proceed.
+          </Text>
 
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              Liquids: Ensure all liquids in your carry-on are under 100 ml and in a clear, resealable plastic bag.
-            </Text>
-          </View>
+          <Text style={commonStyles.boldText}>Liquids:</Text>
+          <Text style={commonStyles.paragraphText}>
+            Ensure all liquids in your carry-on are under 100 ml and in a clear, resealable plastic bag.
+          </Text>
 
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              Metal detectors: Be prepared to go through metal detectors and possibly have your carry-on bag scanned.
-            </Text>
-          </View>
+          <Text style={commonStyles.boldText}>Metal detectors:</Text>
+          <Text style={commonStyles.paragraphText}>
+            Be prepared to go through metal detectors and possibly have your carry-on bag scanned.
+          </Text>
         </View>
       </ScrollView>
 
-      <View style={styles.buttonContainer}>
+      <View style={commonStyles.scrollHint} />
+
+      <View style={commonStyles.buttonContainer}>
         {/* Back Button */}
         <TouchableOpacity 
-          style={styles.button} 
+          style={[commonStyles.navButton, commonStyles.backButton]} 
           onPress={() => navigation.goBack()}
         >
-          <Text style={styles.buttonText}>Back</Text>
+          <Text style={commonStyles.navButtonText}>Back</Text>
         </TouchableOpacity>
 
         {/* Checklist Button */}
         <TouchableOpacity 
-          style={[styles.button, styles.checklistButton]} 
+          style={[commonStyles.navButton, commonStyles.checklistButton]} 
           onPress={() => navigation.navigate('ChecklistScreen')}
         >
-          <Text style={styles.buttonText}>Checklist</Text>
+          <Text style={commonStyles.navButtonText}>Checklist</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#E8E8E8', // Same background color
-    paddingTop: 40,
-    paddingHorizontal: 20, // Added horizontal padding for better spacing
-  },
-  scrollContainer: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingBottom: 100,
-  },
-  title: {
-    fontSize: 35,
-    fontWeight: 'bold',
-    marginBottom: 50,
-    color: '#333', // Same text color as previous screens
-    textAlign: 'center',
-  },
-  image: {
-    width: 300,
-    height: 300,
-    borderRadius: 20,
-    marginBottom: 20,
-    alignSelf: 'center',
-  },
-  listContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 30,
-    width: '100%', // Ensure full width
-  },
-  bulletContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20, // Increased margin for spacing between points
-    justifyContent: 'flex-start',
-    width: '90%', // Add some margin to the sides for better alignment
-  },
-  bullet: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: '#5DA3A3', // Teal color for bullets
-    marginRight: 10,
-  },
-  bulletText: {
-    fontSize: 18,
-    color: '#333', // Same text color
-    lineHeight: 24, // Added lineHeight for better readability
-  },
-  buttonContainer: {
-    position: 'absolute',
-    bottom: 20,
-    left: 20,
-    right: 20,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  button: {
-    backgroundColor: '#5DA3A3', // Teal color for the button
-    borderColor: '#417D7D', // Darker teal color for border
-    borderWidth: 1,
-    paddingVertical: 12,
-    paddingHorizontal: 30,
-    borderRadius: 25,
-    marginBottom: 10,
-    alignItems: 'center',
-    flex: 1,
-    marginHorizontal: 10,
-  },
-  checklistButton: {
-    backgroundColor: '#5DA3A3', // Same teal color for checklist button
-    borderColor: '#417D7D', // Darker teal color for border
-  },
-  buttonText: {
-    fontSize: 16,
-    color: '#fff', // White text color
-    fontWeight: 'bold',
-  },
-});
 
 export default FlightDaySecurityCheck;

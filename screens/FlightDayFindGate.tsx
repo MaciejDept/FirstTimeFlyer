@@ -1,158 +1,58 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
+import commonStyles from '../commonStyles'; // Import commonStyles
 
 const FlightDayFindGate = ({ navigation }: any) => {
   return (
-    <View style={styles.container}>
+    <View style={commonStyles.container}>
       {/* Image */}
       <Image 
         source={require('../assets/page_logos/10.png')} // Replace with your actual image
-        style={styles.image}  
+        style={commonStyles.image}  
       />
 
-      {/* Title */}
-      <Text style={styles.title}>Find Your Gate</Text>
+      <Text style={commonStyles.title}>Find Your Gate</Text>
       
-      {/* Scrollable content */}
       <ScrollView 
-        style={styles.scrollContainer} 
-        contentContainerStyle={styles.scrollContent}
+        style={commonStyles.scrollContainer} 
+        contentContainerStyle={commonStyles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        <View style={styles.listContainer}>
-          {/* Bullet Point 1 */}
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              After passing security, follow the signs to your departure gate.
-            </Text>
-          </View>
+        {/* Bullet points container */}
+        <View style={commonStyles.listContainer}>
+          <Text style={commonStyles.boldText}>After passing security:</Text>
+          <Text style={commonStyles.paragraphText}>
+            Follow the signs to your departure gate.
+          </Text>
 
-          {/* Bullet Point 2 */}
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              Look at the departure board for your flight number, gate information, and boarding time. Gates can sometimes change, so keep an eye on updates.
-            </Text>
-          </View>
+          <Text style={commonStyles.boldText}>Departure board:</Text>
+          <Text style={commonStyles.paragraphText}>
+            Look at the departure board for your flight number, gate information, and boarding time. Gates can sometimes change, so keep an eye on updates.
+          </Text>
         </View>
       </ScrollView>
 
-      {/* Gradient Overlay for Scroll Hint */}
-      <View style={styles.scrollHint} />
+      <View style={commonStyles.scrollHint} />
 
-      {/* Bottom Buttons */}
-      <View style={styles.buttonContainer}>
+      <View style={commonStyles.buttonContainer}>
         {/* Back Button */}
         <TouchableOpacity 
-          style={[styles.navButton, styles.backButton]} 
+          style={[commonStyles.navButton, commonStyles.backButton]} 
           onPress={() => navigation.goBack()}
         >
-          <Text style={styles.navButtonText}>Back</Text>
+          <Text style={commonStyles.navButtonText}>Back</Text>
         </TouchableOpacity>
 
         {/* Checklist Button */}
         <TouchableOpacity 
-          style={[styles.navButton, styles.checklistButton]} 
+          style={[commonStyles.navButton, commonStyles.checklistButton]} 
           onPress={() => navigation.navigate('ChecklistScreen')}
         >
-          <Text style={styles.navButtonText}>Checklist</Text>
+          <Text style={commonStyles.navButtonText}>Checklist</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#E8E8E8',
-    paddingTop: 40, // Space for title
-    paddingHorizontal: 20, // Added horizontal padding for better spacing
-  },
-  scrollContainer: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingBottom: 100,
-  },
-  title: {
-    fontSize: 35,
-    fontWeight: 'bold',
-    marginBottom: 50,
-    color: '#333',
-    textAlign: 'center',
-    marginHorizontal: 20, // Added margin for better spacing
-  },
-  listContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 30,
-    width: '100%', // Ensure full width
-  },
-  bulletContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20, // Increased bottom margin for spacing between points
-    justifyContent: 'flex-start',
-    width: '90%', // Add some margin to the sides for better alignment
-  },
-  bullet: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: '#5DA3A3', // Teal
-    marginRight: 10,
-  },
-  bulletText: {
-    fontSize: 18,
-    color: '#333',
-    lineHeight: 24, // Added lineHeight for better readability
-  },
-  image: {
-    width: 300,
-    height: 300,
-    borderRadius: 20,
-    marginBottom: 20,
-    alignSelf: 'center',
-  },
-  scrollHint: {
-    position: 'absolute',
-    bottom: 80,
-    left: 0,
-    right: 0,
-    height: 50,
-    backgroundColor: 'rgba(232, 232, 232, 0.9)', // Gradient overlay for scroll hint
-  },
-  buttonContainer: {
-    position: 'absolute',
-    bottom: 20,
-    left: 20,
-    right: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  navButton: {
-    flex: 1,
-    paddingVertical: 12,
-    borderRadius: 25,
-    alignItems: 'center',
-    borderWidth: 1,
-    marginHorizontal: 5,
-  },
-  backButton: {
-    backgroundColor: '#5DA3A3', // Teal
-    borderColor: '#417D7D', // Darker Teal
-  },
-  checklistButton: {
-    backgroundColor: '#5DA3A3', // Teal
-    borderColor: '#417D7D', // Darker Teal
-  },
-  navButtonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
-});
 
 export default FlightDayFindGate;

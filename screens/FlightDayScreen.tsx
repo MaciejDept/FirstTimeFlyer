@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',  
     padding: 20,
-    backgroundColor: '#E8E8E8', // Same as IntroScreen and PreTripScreen
+    backgroundColor: '#E8E8E8',
   },
   image: {
     width: 200,
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: 'bold',
     marginBottom: 50,
-    color: '#333', // Same as in the other screens
+    color: '#333',
     textAlign: 'center',
   },
   listContainer: {
@@ -114,12 +114,12 @@ const styles = StyleSheet.create({
     width: 10,  
     height: 10, 
     borderRadius: 5,  
-    backgroundColor: '#417D7D',  // Darker Teal from IntroScreen and PreTripScreen
+    backgroundColor: '#417D7D',
     marginRight: 10,
   },
   bulletText: {
     fontSize: 18,
-    color: '#333', // Consistent text color across all screens
+    color: '#333',
     textDecorationLine: 'underline',
   },
   buttonContainer: {
@@ -128,8 +128,8 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   button: {
-    backgroundColor: '#5DA3A3', // Teal from IntroScreen and PreTripScreen
-    borderColor: '#417D7D', // Darker Teal from IntroScreen and PreTripScreen
+    backgroundColor: '#5DA3A3',
+    borderColor: '#417D7D',
     borderWidth: 1,
     paddingVertical: 12,
     paddingHorizontal: 30,
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    color: '#fff', // White text color from IntroScreen and PreTripScreen
+    color: '#fff',
     fontWeight: 'bold',
   },
 });
