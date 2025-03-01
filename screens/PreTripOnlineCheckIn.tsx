@@ -19,26 +19,20 @@ const PreTripOnlineCheckIn = ({ navigation }: any) => {
       >
         {/* Bullet points container */}
         <View style={styles.listContainer}>
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              <Text style={styles.boldText}>Check-in window:</Text> Most airlines allow you to check in 24-48 hours before your flight. Check in online to avoid long lines at the airport.
-            </Text>
-          </View>
+          <Text style={styles.boldText}>Check-in window:</Text>
+          <Text style={styles.paragraphText}>
+            Most airlines allow you to check in 24-48 hours before your flight. It’s a good idea to check in online as soon as the window opens to avoid long lines at the airport and ensure your seat preference is secured. Online check-in can be done via the airline’s website or app, and it will save you time and stress on the day of your flight. If you don’t check in online, you’ll need to do so at the airport, which could take longer, especially during busy travel times. If you're unsure about how to check in, the airline's customer service team will be happy to help.
+          </Text>
 
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              <Text style={styles.boldText}>Personal details:</Text> During online check-in, you’ll be asked for personal details (passport number, contact details, etc.).
-            </Text>
-          </View>
+          <Text style={styles.boldText}>Personal details:</Text>
+          <Text style={styles.paragraphText}>
+            During online check-in, you’ll be asked to provide some personal details, such as your passport number (if traveling internationally), your contact information, and any special requests you might have (like assistance with mobility). This is also the time to confirm your travel details, such as baggage allowance and seat preferences. It’s important to make sure the details are correct, so double-check everything before finalizing your check-in. Don’t worry—it’s a quick process, and once done, you’ll be one step closer to your adventure!
+          </Text>
 
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              <Text style={styles.boldText}>Boarding pass:</Text> You’ll receive your boarding pass, which you can either print or save on your phone.
-            </Text>
-          </View>
+          <Text style={styles.boldText}>Boarding pass:</Text>
+          <Text style={styles.paragraphText}>
+            Once you’ve completed check-in, you’ll receive your boarding pass. This is your ticket to the plane! You can either print it out or save it on your phone (many airlines have mobile apps that allow you to access it digitally). If you choose to go digital, just make sure your phone is charged and that you can access the boarding pass easily when needed. The boarding pass will include important details like your flight number, departure gate, and boarding time. Make sure to keep it handy when you go through security and at the gate later — it’s your key to getting on board!
+          </Text>
         </View>
       </ScrollView>
 
@@ -72,7 +66,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#E8E8E8',
     paddingTop: 40, // Space for title
-    paddingHorizontal: 20, // Add horizontal padding for better spacing
+    paddingHorizontal: 25, // Added horizontal padding for better spacing
   },
   scrollContainer: {
     flex: 1,
@@ -89,46 +83,39 @@ const styles = StyleSheet.create({
     marginHorizontal: 20, // Added margin for better spacing
   },
   listContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 30,
-    width: '100%', // Ensure full width
-  },
-  bulletContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20, // Increased bottom margin for spacing between points
     justifyContent: 'flex-start',
-    width: '90%', // Add some margin to the sides for better alignment
-  },
-  bullet: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: '#5DA3A3', // Teal
-    marginRight: 10,
-  },
-  bulletText: {
-    fontSize: 18,
-    color: '#333',
-    lineHeight: 24, // Added lineHeight for better readability
+    alignItems: 'flex-start',
+    marginBottom: 30,
+    width: '100%',
   },
   boldText: {
     fontWeight: 'bold',
+    fontSize: 20,
+    marginBottom: 20,
+    color: '#333',
+    marginHorizontal: 15,
+  },
+  paragraphText: {
+    fontSize: 18,
+    color: '#333',
+    marginBottom: 20,
+    lineHeight: 28,
+    textAlign: 'left',
+    marginHorizontal: 15,
   },
   image: {
     width: 300,
     height: 300,
     borderRadius: 20,
-    marginBottom: 20,
+    marginBottom: 5,
     alignSelf: 'center',
   },
   scrollHint: {
     position: 'absolute',
-    bottom: 80,
+    bottom: 0,
     left: 0,
     right: 0,
-    height: 50,
+    height: 100,
     backgroundColor: 'rgba(232, 232, 232, 0.9)',
   },
   buttonContainer: {
@@ -148,12 +135,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   backButton: {
-    backgroundColor: '#5DA3A3', // Teal
-    borderColor: '#417D7D', // Darker Teal
+    backgroundColor: '#5DA3A3',
+    borderColor: '#417D7D',
   },
   checklistButton: {
-    backgroundColor: '#5DA3A3', // Teal
-    borderColor: '#417D7D', // Darker Teal
+    backgroundColor: '#5DA3A3',
+    borderColor: '#417D7D',
   },
   navButtonText: {
     fontSize: 16,

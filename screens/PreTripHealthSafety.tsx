@@ -17,30 +17,22 @@ const PreTripHealthSafety = ({ navigation }: any) => {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Bullet points container */}
         <View style={styles.listContainer}>
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              <Text style={styles.boldText}>Health requirements:</Text> Check if there are any special health requirements, like COVID tests or vaccination certificates (depending on your destination).
-            </Text>
-          </View>
+          <Text style={styles.boldText}>Health requirements:</Text>
+          <Text style={styles.paragraphText}>
+            Check if there are any special health requirements, like COVID tests or vaccination certificates (depending on your destination). Some countries may have specific entry requirements that can change frequently, so it’s a good idea to stay updated. If you're feeling uncertain about what’s needed, don't hesitate to reach out to your airline or the embassy of your destination for clarification. It’s always better to be over-prepared than under-prepared, and taking care of these details early on can give you peace of mind!
+          </Text>
 
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              <Text style={styles.boldText}>Medications:</Text> Make sure you have any necessary medications in your carry-on bag.
-            </Text>
-          </View>
+          <Text style={styles.boldText}>Medications:</Text>
+          <Text style={styles.paragraphText}>
+            Make sure you have any necessary medications in your carry-on bag. It's important to carry enough for the duration of your trip, and if you have any special medical needs, make sure to have them easily accessible. If you’re flying internationally, check the regulations for bringing medications into your destination country—some might require a doctor’s note or prescription. It’s always a good idea to keep your medication in its original packaging as well. Stay healthy and happy during your journey!
+          </Text>
         </View>
       </ScrollView>
 
-      {/* Gradient Overlay for Scroll Hint */}
       <View style={styles.scrollHint} />
 
-      {/* Bottom Buttons */}
       <View style={styles.buttonContainer}>
-        {/* Back Button */}
         <TouchableOpacity 
           style={[styles.navButton, styles.backButton]} 
           onPress={() => navigation.goBack()}
@@ -48,7 +40,6 @@ const PreTripHealthSafety = ({ navigation }: any) => {
           <Text style={styles.navButtonText}>Back</Text>
         </TouchableOpacity>
 
-        {/* Checklist Button */}
         <TouchableOpacity 
           style={[styles.navButton, styles.checklistButton]} 
           onPress={() => navigation.navigate('ChecklistScreen')}
@@ -65,7 +56,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#E8E8E8',
     paddingTop: 40, // Space for title
-    paddingHorizontal: 20, // Add horizontal padding for better spacing
+    paddingHorizontal: 25, // Added horizontal padding for better spacing
   },
   scrollContainer: {
     flex: 1,
@@ -82,46 +73,39 @@ const styles = StyleSheet.create({
     marginHorizontal: 20, // Added margin for better spacing
   },
   listContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
     marginBottom: 30,
     width: '100%', // Ensure full width
   },
-  bulletContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20, // Increased bottom margin for spacing between points
-    justifyContent: 'flex-start',
-    width: '90%', // Add some margin to the sides for better alignment
-  },
-  bullet: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: '#5DA3A3', // Teal
-    marginRight: 10,
-  },
-  bulletText: {
-    fontSize: 18,
-    color: '#333',
-    lineHeight: 24, // Added lineHeight for better readability
-  },
   boldText: {
     fontWeight: 'bold',
+    fontSize: 20,
+    marginBottom: 20,
+    color: '#333',
+    marginHorizontal: 15,
+  },
+  paragraphText: {
+    fontSize: 18,
+    color: '#333',
+    marginBottom: 20,
+    lineHeight: 28,
+    textAlign: 'left',
+    marginHorizontal: 15,
   },
   image: {
     width: 300,
     height: 300,
     borderRadius: 20,
-    marginBottom: 20,
+    marginBottom: 5,
     alignSelf: 'center',
   },
   scrollHint: {
     position: 'absolute',
-    bottom: 80,
+    bottom: 0,
     left: 0,
     right: 0,
-    height: 50,
+    height: 100,
     backgroundColor: 'rgba(232, 232, 232, 0.9)',
   },
   buttonContainer: {
@@ -141,12 +125,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   backButton: {
-    backgroundColor: '#5DA3A3', // Teal
-    borderColor: '#417D7D', // Darker Teal
+    backgroundColor: '#5DA3A3',
+    borderColor: '#417D7D',
   },
   checklistButton: {
-    backgroundColor: '#5DA3A3', // Teal
-    borderColor: '#417D7D', // Darker Teal
+    backgroundColor: '#5DA3A3',
+    borderColor: '#417D7D',
   },
   navButtonText: {
     fontSize: 16,

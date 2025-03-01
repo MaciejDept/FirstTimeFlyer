@@ -18,59 +18,27 @@ const PreTripAirportTransfer = ({ navigation }: any) => {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Bullet points container */}
         <View style={styles.listContainer}>
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              If you’re driving to the airport, check parking availability and rates.
-            </Text>
-          </View>
+          <Text style={styles.boldText}>Parking Tips:</Text>
+          <Text style={styles.paragraphText}>
+            If you’re planning to drive, it’s always a good idea to check the parking options at the airport before you go. Many airports offer both short-term and long-term parking, but availability can sometimes be limited, especially during busy travel periods. If possible, try to reserve your parking spot ahead of time, so you don’t have to worry about finding a space when you arrive. Also, compare parking rates across different lots or garages to find the most affordable one. Arriving early to park can save you from the stress of rushing through traffic and help you get a good spot closer to the terminal.
+          </Text>
 
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              If you're taking public transportation or a ride-sharing service, confirm your route.
-            </Text>
-          </View>
+          <Text style={styles.boldText}>Confirm Your Route:</Text>
+          <Text style={styles.paragraphText}>
+            Whether you’re taking public transportation or a taxi, make sure to double-check your travel plans in advance. Public transport like buses and trains may have limited schedules, especially early in the morning or late at night, so plan accordingly. Look up the best routes and be aware of any possible delays or changes to the schedule. If you’re using a taxi, confirm your pickup location, and check the estimated travel time to avoid last-minute confusion. If you’re worried about finding the right pickup spot, many airports have designated taxi areas. Don’t be afraid to ask for help if you’re unsure!
+          </Text>
 
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              <Text style={styles.boldText}>Estimated travel time:</Text> Plan for possible traffic or delays. It’s better to arrive early than risk missing your flight.
-            </Text>
-          </View>
-
-          {/* Additional placeholder bullet points */}
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              <Text style={styles.boldText}>Test:</Text> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              <Text style={styles.boldText}>Test:</Text> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText}>
-              <Text style={styles.boldText}>Test:</Text> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.
-            </Text>
-          </View>
+          <Text style={styles.boldText}>Plan Extra Time:</Text>
+          <Text style={styles.paragraphText}>
+            One of the most important things to remember when flying for the first time is that it’s always better to arrive early than to risk running late. Airports can be overwhelming, and you may need extra time to go through check-in, security, and other procedures. Take into account the time it takes to get to the airport, but also factor in potential delays like heavy traffic, construction, or road closures. If you’re traveling during peak times, such as holidays or rush hour, expect delays and give yourself a little extra time. It’s much more relaxing to arrive with plenty of time to spare than to rush and feel stressed. Once you’re there, you can relax knowing that everything is in order.
+          </Text>
         </View>
       </ScrollView>
 
-      {/* Gradient Overlay for Scroll Hint */}
       <View style={styles.scrollHint} />
 
-      {/* Bottom Buttons */}
       <View style={styles.buttonContainer}>
-        {/* Back Button */}
         <TouchableOpacity 
           style={[styles.navButton, styles.backButton]} 
           onPress={() => navigation.goBack()}
@@ -78,7 +46,6 @@ const PreTripAirportTransfer = ({ navigation }: any) => {
           <Text style={styles.navButtonText}>Back</Text>
         </TouchableOpacity>
 
-        {/* Checklist Button */}
         <TouchableOpacity 
           style={[styles.navButton, styles.checklistButton]} 
           onPress={() => navigation.navigate('ChecklistScreen')}
@@ -94,8 +61,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#E8E8E8',
-    paddingTop: 40, // Space for title
-    paddingHorizontal: 20, // Add horizontal padding for better spacing
+    paddingTop: 40,
+    paddingHorizontal: 25,
   },
   scrollContainer: {
     flex: 1,
@@ -109,49 +76,42 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     color: '#333',
     textAlign: 'center',
-    marginHorizontal: 20, // Added margin for better spacing
+    marginHorizontal: 20,
   },
   listContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 30,
-    width: '100%', // Ensure full width
-  },
-  bulletContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20, // Increased bottom margin for spacing between points
     justifyContent: 'flex-start',
-    width: '90%', // Add some margin to the sides for better alignment
-  },
-  bullet: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: '#5DA3A3', // Teal
-    marginRight: 10,
-  },
-  bulletText: {
-    fontSize: 18,
-    color: '#333',
-    lineHeight: 24, // Added lineHeight for better readability
+    alignItems: 'flex-start',
+    marginBottom: 30,
+    width: '100%',
   },
   boldText: {
     fontWeight: 'bold',
+    fontSize: 20,
+    marginBottom: 20,
+    color: '#333',
+    marginHorizontal: 15,
+  },
+  paragraphText: {
+    fontSize: 18,
+    color: '#333',
+    marginBottom: 20,
+    lineHeight: 28,
+    textAlign: 'left',
+    marginHorizontal: 15,
   },
   image: {
     width: 300,
     height: 300,
     borderRadius: 20,
-    marginBottom: 20,
+    marginBottom: 5,
     alignSelf: 'center',
   },
   scrollHint: {
     position: 'absolute',
-    bottom: 80,
+    bottom: 0,
     left: 0,
     right: 0,
-    height: 50,
+    height: 100,
     backgroundColor: 'rgba(232, 232, 232, 0.9)',
   },
   buttonContainer: {
@@ -171,12 +131,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   backButton: {
-    backgroundColor: '#5DA3A3', // Teal
-    borderColor: '#417D7D', // Darker Teal
+    backgroundColor: '#5DA3A3',
+    borderColor: '#417D7D',
   },
   checklistButton: {
-    backgroundColor: '#5DA3A3', // Teal
-    borderColor: '#417D7D', // Darker Teal
+    backgroundColor: '#5DA3A3',
+    borderColor: '#417D7D',
   },
   navButtonText: {
     fontSize: 16,

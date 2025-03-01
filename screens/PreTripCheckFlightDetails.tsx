@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
     borderRadius: 20,
-    marginBottom: 20,
+    marginBottom: 5,
     alignSelf: 'center',
   },
   scrollHint: {
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 120,
+    height: 100,
     backgroundColor: 'rgba(232, 232, 232, 0.9)',
   },
   buttonContainer: {
