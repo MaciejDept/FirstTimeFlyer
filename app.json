@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "SimpleFlyApp",
-    "slug": "SimpleFlyApp",
+    "name": "First Time Flyer",
+    "slug": "first-time-flyer",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,13 +12,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.popoturapps.firsttimefly"
-    },
     "android": {
       "package": "com.popoturapps.firsttimefly",
       "versionCode": 3,
+      "name": "First Time Flyer",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -30,6 +27,9 @@
     },
     "plugins": [
       "expo-font"
+    ],
+    "assetBundlePatterns": [
+      "assets/**/*"
     ],
     "extra": {
       "eas": {
