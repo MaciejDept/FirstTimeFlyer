@@ -15,19 +15,23 @@
     "android": {
       "package": "com.popoturapps.firsttimefly",
       "versionCode": 3,
-      "name": "First Time Flyer",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": []
+      "permissions": [],
+      "softwareKeyboardLayoutMode": "pan"
+    },
+    "ios": {
+      "bundleIdentifier": "com.popoturapps.firsttimefly",
+      "buildNumber": "1.0.0"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-font",
-      "expo-asset"
+      "expo-asset",
+      "expo-font"    
     ],
     "assetBundlePatterns": [
       "assets/**/*"
@@ -36,9 +40,6 @@
       "eas": {
         "projectId": "dfb0e0a5-d665-4148-b512-1078043875a8"
       }
-    },
-    "ios": {
-      "bundleIdentifier": "com.popoturapps.firsttimefly"
     }
   }
 }
