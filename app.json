@@ -13,7 +13,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.popoturapps.firsttimefly"
     },
     "android": {
       "package": "com.popoturapps.firsttimefly",
