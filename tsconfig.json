@@ -2,12 +2,10 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "target": "esnext",
-    "lib": [
-      "esnext"
-    ],
+    "lib": ["esnext"],
     "module": "esnext",
     "moduleResolution": "node",
-    "jsx": "react-jsx",
+    "jsx": "react-native",
     "allowJs": true,
     "strict": true,
     "noEmit": true,
@@ -16,12 +14,8 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "*": [
-        "node_modules/*"
-      ],
-      "assets/*": [
-        "./assets/*"
-      ]
+      "*": ["node_modules/*"],
+      "assets/*": ["./assets/*"]
     },
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true
