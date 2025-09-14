@@ -35,6 +35,9 @@
       "eas": {
         "projectId": "dfb0e0a5-d665-4148-b512-1078043875a8"
       }
+    },
+    "ios": {
+      "bundleIdentifier": "com.popoturapps.firsttimefly"
     }
   }
 }
