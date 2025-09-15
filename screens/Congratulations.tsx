@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'rea
 const Congratulations = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
-      
+      {/* Scrollable Content */}
       <ScrollView 
         contentContainerStyle={styles.scrollContent} 
         showsVerticalScrollIndicator={false}
@@ -14,11 +14,11 @@ const Congratulations = ({ navigation }: any) => {
           style={styles.image}
         />
 
-        <Text style={styles.title}>Congratulations!</Text>
+        <Text style={styles.title}>🎉 Congratulations!</Text>
         
         <View style={styles.messageContainer}>
           <Text style={styles.message}>
-            Congrats on completing your first flight!
+            You’ve successfully completed your first flight!
           </Text>
           <Text style={styles.message}>
             Welcome to the world of travel.
@@ -29,16 +29,23 @@ const Congratulations = ({ navigation }: any) => {
         </View>
       </ScrollView>
 
+      {/* Translucent Overlay Behind Buttons */}
+      <View style={styles.scrollHint} />
+
       {/* Button Container (Stacked vertically) */}
       <View style={styles.buttonContainer}>
-        {/* Home Button */}
-        <TouchableOpacity style={[styles.button, { backgroundColor: '#5DA3A3' }]} onPress={() => navigation.navigate('WelcomeScreen')}>
-          <Text style={styles.buttonText}>Home</Text>
+        <TouchableOpacity 
+          style={[styles.button, { backgroundColor: '#5DA3A3' }]} 
+          onPress={() => navigation.navigate('WelcomeScreen')}
+        >
+          <Text style={styles.buttonText}>🏠 Home</Text>
         </TouchableOpacity>
 
-        {/* Back Button */}
-        <TouchableOpacity style={[styles.button, { backgroundColor: '#5DA3A3' }]} onPress={() => navigation.goBack()}>
-          <Text style={styles.buttonText}>Back</Text>
+        <TouchableOpacity 
+          style={[styles.button, { backgroundColor: '#417D7D' }]} 
+          onPress={() => navigation.goBack()}
+        >
+          <Text style={styles.buttonText}>⬅ Back</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -48,25 +55,23 @@ const Congratulations = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
     backgroundColor: '#E8E8E8',
     paddingHorizontal: 20,
+    alignItems: 'center',
   },
   scrollContent: {
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: 20,
+    paddingBottom: 160,
   },
   image: {
-    width: 300,  
-    height: 300,
-    borderRadius: 20,  
+    width: 280,  
+    height: 280,
     marginBottom: 20,
   },
   title: {
-    fontSize: 35,
+    fontSize: 34,
     fontWeight: 'bold',
     marginBottom: 20,
     color: '#333',
@@ -77,30 +82,44 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   message: {
-    fontSize: 20,
+    fontSize: 18,
     color: '#333',
     textAlign: 'center',
-    marginBottom: 15,
-    maxWidth: '80%',
+    marginBottom: 12,
+    maxWidth: '85%',
+    lineHeight: 26,
+  },
+  /* Translucent overlay like other screens */
+  scrollHint: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 120,
+    backgroundColor: 'rgba(232, 232, 232, 0.9)',
   },
   buttonContainer: {
+    position: 'absolute',
+    bottom: 80,
     width: '100%',
     alignItems: 'center',
-    paddingBottom: 20,
+    paddingHorizontal: 20,
   },
   button: {
-    backgroundColor: '#5DA3A3',
-    borderColor: '#417D7D',
-    borderWidth: 1,
-    paddingVertical: 12,
-    paddingHorizontal: 30,
     borderRadius: 25,
+    paddingVertical: 14,
+    paddingHorizontal: 30,
     marginBottom: 15,
-    width: '80%',
+    width: '90%',
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 6,
+    elevation: 3, // Android shadow
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: 17,
     color: '#fff',
     fontWeight: 'bold',
   },

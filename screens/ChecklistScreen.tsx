@@ -97,9 +97,15 @@ const ChecklistScreen = ({ navigation }: any) => {
         ))}
       </ScrollView>
 
-      {/* Back & Complete Buttons at the Bottom */}
+      {/* Transparent Overlay behind Buttons */}
+      <View style={styles.scrollHint} />
+
+      {/* Back & Complete Buttons */}
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={[styles.button, { backgroundColor: '#5DA3A3' }]} onPress={() => navigation.goBack()}>
+        <TouchableOpacity 
+          style={[styles.button, { backgroundColor: '#5DA3A3' }]} 
+          onPress={() => navigation.goBack()}
+        >
           <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
 
@@ -119,7 +125,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    padding: 20,
     paddingTop: 60,
     backgroundColor: '#E8E8E8',
   },
@@ -133,6 +138,7 @@ const styles = StyleSheet.create({
   scrollContainer: {
     paddingVertical: 10,
     width: '100%',
+    paddingBottom: 160, // ensure space for buttons
   },
   section: {
     marginBottom: 20, 
@@ -160,12 +166,22 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',  
     width: '90%',      
   },
+  /* Translucent overlay like IntroScreen */
+  scrollHint: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 120,
+    backgroundColor: 'rgba(232, 232, 232, 0.9)',
+  },
   buttonContainer: {
+    position: 'absolute',
+    bottom: 40,
+    left: 20,
+    right: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '100%',
-    marginTop: 20,
-    paddingHorizontal: 20,
   },
   button: {
     paddingVertical: 12,

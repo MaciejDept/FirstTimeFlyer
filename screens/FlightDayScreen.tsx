@@ -139,8 +139,8 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 250,
+    height: 250,
     borderRadius: 20,
     marginBottom: 5,
     alignSelf: 'center',
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 20,
+    bottom: 60,
     left: 20,
     right: 20,
     flexDirection: 'row',

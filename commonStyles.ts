@@ -28,7 +28,7 @@ const commonStyles: Styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingBottom: 100,
+    paddingBottom: 120,
   },
   title: {
     fontSize: 35,
@@ -76,7 +76,7 @@ const commonStyles: Styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 20,
+    bottom: 40,
     left: 20,
     right: 20,
     flexDirection: 'row',
