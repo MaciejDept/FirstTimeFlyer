@@ -37,6 +37,7 @@
   "private": true,
   "devDependencies": {
     "@types/react": "~19.1.10",
+    "metro-react-native-babel-preset": "^0.77.0",
     "react-native-worklets": "^0.5.1",
     "typescript": "^5.9.2"
   }

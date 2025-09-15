@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "First Time Flyer",
-    "slug": "first-time-flyer",
+    "slug": "SimpleFlyApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
