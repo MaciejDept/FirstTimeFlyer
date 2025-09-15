@@ -7,14 +7,9 @@
     "moduleResolution": "node",
     "jsx": "react-native",
     "allowJs": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "*": ["node_modules/*"],
       "assets/*": ["./assets/*"]
     },
     "resolveJsonModule": true,
