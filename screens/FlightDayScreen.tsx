@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { initialWindowMetrics } from 'react-native-safe-area-context';
 
-const { height } = Dimensions.get('window');
+const insetBottom = initialWindowMetrics?.insets.bottom ?? 0;
 
 const FlightDayScreen = ({ navigation }: any) => {
   return (
@@ -12,7 +13,6 @@ const FlightDayScreen = ({ navigation }: any) => {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Image */}
         <Image 
           source={require('../assets/dodo_flightday.png')} 
           style={styles.image}
@@ -21,62 +21,31 @@ const FlightDayScreen = ({ navigation }: any) => {
         <Text style={styles.title}>Flight Day</Text>
         
         <View style={styles.listContainer}>
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayArriveAtAirport')}>
-              Arrive at the airport 2 to 3 hours early
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayCheckIn')}>
-              Check in and drop off luggage
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDaySecurityCheck')}>
-              Go through security
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayFindGate')}>
-              Find your gate
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayWaitForBoarding')}>
-              Wait for boarding
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayBoardPlane')}>
-              Board the plane
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('FlightDayEnjoyFlight')}>
-              Enjoy the flight!
-            </Text>
-          </View>
+          {[
+            { label: 'Arrive at the airport 2 to 3 hours early', route: 'FlightDayArriveAtAirport' },
+            { label: 'Check in and drop off luggage', route: 'FlightDayCheckIn' },
+            { label: 'Go through security', route: 'FlightDaySecurityCheck' },
+            { label: 'Find your gate', route: 'FlightDayFindGate' },
+            { label: 'Wait for boarding', route: 'FlightDayWaitForBoarding' },
+            { label: 'Board the plane', route: 'FlightDayBoardPlane' },
+            { label: 'Enjoy the flight!', route: 'FlightDayEnjoyFlight' },
+          ].map((item, index) => (
+            <View key={index} style={styles.bulletContainer}>
+              <View style={styles.bullet}></View>
+              <Text 
+                style={styles.bulletText} 
+                onPress={() => navigation.navigate(item.route)}
+              >
+                {item.label}
+              </Text>
+            </View>
+          ))}
         </View>
       </ScrollView>
 
-      {/* Fixed Buttons at the Bottom */}
       <View style={styles.scrollHint} />
 
       <View style={styles.buttonContainer}>
-        {/* Back Button */}
         <TouchableOpacity 
           style={[styles.navButton, styles.backButton]} 
           onPress={() => navigation.goBack()}
@@ -84,7 +53,6 @@ const FlightDayScreen = ({ navigation }: any) => {
           <Text style={styles.navButtonText}>Back</Text>
         </TouchableOpacity>
 
-        {/* Next Button */}
         <TouchableOpacity 
           style={[styles.navButton, styles.nextButton]} 
           onPress={() => navigation.navigate('LandingScreen')}
@@ -105,13 +73,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingBottom: 120,
+    paddingBottom: 140,
   },
   title: {
-    fontSize: 35,
-    fontWeight: 'bold',
+    fontSize: 34,
+    fontWeight: '700',
     marginTop: 20,
-    marginBottom: 50,
+    marginBottom: 40,
     color: '#333',
     textAlign: 'center',
   },
@@ -121,10 +89,8 @@ const styles = StyleSheet.create({
   bulletContainer: {
     flexDirection: 'row', 
     alignItems: 'center', 
-    marginBottom: 15, 
-    marginLeft: 40,
-    marginRight: 40,
-    justifyContent: 'flex-start',
+    marginBottom: 18, 
+    marginHorizontal: 35,
   },
   bullet: {
     width: 10,  
@@ -137,22 +103,26 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#333',
     textDecorationLine: 'underline',
+    flexShrink: 1,
   },
   image: {
-    width: 250,
-    height: 250,
+    width: 240,
+    height: 240,
     borderRadius: 20,
-    marginBottom: 5,
+    marginBottom: 15,
     alignSelf: 'center',
-    marginTop: 80,
+    marginTop: 70,
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 60,
-    left: 20,
-    right: 20,
+    bottom: insetBottom + 10,
+    left: 25,
+    right: 25,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: 'rgba(232, 232, 232, 0.6)',
+    borderRadius: 20,
+    paddingVertical: 10,
   },
   navButton: {
     flex: 1,
@@ -160,7 +130,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     alignItems: 'center',
     borderWidth: 1,
-    marginHorizontal: 5,
+    marginHorizontal: 8,
   },
   backButton: {
     backgroundColor: '#5DA3A3',
@@ -180,8 +150,8 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 120,
-    backgroundColor: 'rgba(232, 232, 232, 0.9)',
+    height: 100,
+    backgroundColor: 'rgba(232, 232, 232, 0.75)',
   },
 });
 

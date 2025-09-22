@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Dimensions } from 'react-native';
+import { initialWindowMetrics } from 'react-native-safe-area-context';
 
 const { height } = Dimensions.get('window');
+const insetBottom = initialWindowMetrics?.insets.bottom ?? 0;
 
 const PreTripScreen = ({ navigation }: any) => {
   return (
@@ -12,7 +14,6 @@ const PreTripScreen = ({ navigation }: any) => {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Image */}
         <Image 
           source={require('../assets/dodo_inspect.png')} 
           style={styles.image}  
@@ -21,62 +22,31 @@ const PreTripScreen = ({ navigation }: any) => {
         <Text style={styles.title}>Pre-Trip Inspection</Text>
         
         <View style={styles.listContainer}>
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripCheckFlightDetails')}>
-              Check flight details
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripOnlineCheckIn')}>
-              Online check-in and print/save boarding pass
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripBaggageCheck')}>
-              Check your baggage allowance and airline's baggage policies
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripPackYourBags')}>
-              Pack bags according to airline rules
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripSetTravelReminders')}>
-              Set travel reminders
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripAirportTransfer')}>
-              Confirm airport transport
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('PreTripHealthSafety')}>
-              Check health/safety requirements
-            </Text>
-          </View>
+          {[
+            { label: 'Check flight details', route: 'PreTripCheckFlightDetails' },
+            { label: 'Online check-in and print/save boarding pass', route: 'PreTripOnlineCheckIn' },
+            { label: 'Check your baggage allowance and airline\'s baggage policies', route: 'PreTripBaggageCheck' },
+            { label: 'Pack bags according to airline rules', route: 'PreTripPackYourBags' },
+            { label: 'Set travel reminders', route: 'PreTripSetTravelReminders' },
+            { label: 'Confirm airport transport', route: 'PreTripAirportTransfer' },
+            { label: 'Check health/safety requirements', route: 'PreTripHealthSafety' },
+          ].map((item, index) => (
+            <View key={index} style={styles.bulletContainer}>
+              <View style={styles.bullet}></View>
+              <Text 
+                style={styles.bulletText} 
+                onPress={() => navigation.navigate(item.route)}
+              >
+                {item.label}
+              </Text>
+            </View>
+          ))}
         </View>
       </ScrollView>
 
-      {/* Fixed Buttons at the Bottom */}
       <View style={styles.scrollHint} />
 
       <View style={styles.buttonContainer}>
-        {/* Back Button */}
         <TouchableOpacity 
           style={[styles.navButton, styles.backButton]} 
           onPress={() => navigation.goBack()}
@@ -84,7 +54,6 @@ const PreTripScreen = ({ navigation }: any) => {
           <Text style={styles.navButtonText}>Back</Text>
         </TouchableOpacity>
 
-        {/* Next Button */}
         <TouchableOpacity 
           style={[styles.navButton, styles.nextButton]} 
           onPress={() => navigation.navigate('FlightDayScreen')}
@@ -105,13 +74,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingBottom: 120,
+    paddingBottom: 140,
   },
   title: {
-    fontSize: 35,
-    fontWeight: 'bold',
+    fontSize: 34,
+    fontWeight: '700',
     marginTop: 20,
-    marginBottom: 50,
+    marginBottom: 40,
     color: '#333',
     textAlign: 'center',
   },
@@ -121,10 +90,8 @@ const styles = StyleSheet.create({
   bulletContainer: {
     flexDirection: 'row', 
     alignItems: 'center', 
-    marginBottom: 15, 
-    marginLeft: 40,
-    marginRight: 40,
-    justifyContent: 'flex-start',
+    marginBottom: 18, 
+    marginHorizontal: 35,
   },
   bullet: {
     width: 10,  
@@ -137,22 +104,26 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#333',
     textDecorationLine: 'underline',
+    flexShrink: 1,
   },
   image: {
-    width: 250,  
-    height: 250,
+    width: 240,  
+    height: 240,
     borderRadius: 20,  
-    marginBottom: 5,
+    marginBottom: 15,
     alignSelf: 'center',
-    marginTop: 80,
+    marginTop: 70,
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 60,
-    left: 20,
-    right: 20,
+    bottom: insetBottom + 10,
+    left: 25,
+    right: 25,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: 'rgba(232, 232, 232, 0.6)',
+    borderRadius: 20,
+    paddingVertical: 10,
   },
   navButton: {
     flex: 1,
@@ -160,7 +131,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     alignItems: 'center',
     borderWidth: 1,
-    marginHorizontal: 5,
+    marginHorizontal: 8,
   },
   backButton: {
     backgroundColor: '#5DA3A3',
@@ -180,8 +151,8 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 120,
-    backgroundColor: 'rgba(232, 232, 232, 0.9)',
+    height: 100,
+    backgroundColor: 'rgba(232, 232, 232, 0.75)',
   },
 });
 

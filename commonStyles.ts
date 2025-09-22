@@ -1,4 +1,7 @@
 import { StyleSheet, ViewStyle, TextStyle, ImageStyle } from 'react-native';
+import { initialWindowMetrics } from 'react-native-safe-area-context';
+
+const insetBottom = initialWindowMetrics?.insets.bottom ?? 0;
 
 interface Styles {
   container: ViewStyle;
@@ -28,7 +31,7 @@ const commonStyles: Styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingBottom: 120,
+    paddingBottom: 200,
   },
   title: {
     fontSize: 35,
@@ -76,11 +79,15 @@ const commonStyles: Styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 40,
+    bottom: insetBottom + 10,
     left: 20,
     right: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: 'rgba(232, 232, 232, 0.6)',
+    borderRadius: 15,
+    paddingVertical: 10,
+    paddingHorizontal: 8,
   },
   navButton: {
     flex: 1,

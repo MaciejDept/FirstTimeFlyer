@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { 
-  View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, Dimensions 
+  View, Text, StyleSheet, TouchableOpacity, ScrollView, Image 
 } from 'react-native';
+import { initialWindowMetrics } from 'react-native-safe-area-context';
 
-const { height } = Dimensions.get('window'); 
+const insetBottom = initialWindowMetrics?.insets.bottom ?? 0;
 
 const IntroScreen = ({ navigation }: any) => {
   const [expanded, setExpanded] = useState(false);
@@ -26,53 +27,38 @@ const IntroScreen = ({ navigation }: any) => {
 
           <Text style={styles.introText}>
             Flying for the first time can be a stressful experience ... 
-            {"\n\n"}
-            No worries, we’re here to help! 
-            {"\n\n"}
-            From packing your bags to landing at your destination, we’ll guide you through each step of the way. 
-            {"\n\n"}
-            Every flight journey consists of 3 parts:
+            {"\n\n"}No worries, we’re here to help! 
+            {"\n\n"}From packing your bags to landing at your destination, we’ll guide you through each step of the way. 
+            {"\n\n"}Every flight journey consists of 3 parts:
           </Text>
 
           <View style={styles.listContainer}>
-            <TouchableOpacity 
-              style={styles.bulletContainer} 
-              onPress={() => navigation.navigate('PreTripScreen')}
-            >
-              <View style={styles.bullet} />
-              <Text style={styles.bulletText}>Pre-Trip Inspection</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity 
-              style={styles.bulletContainer} 
-              onPress={() => navigation.navigate('FlightDayScreen')}
-            >
-              <View style={styles.bullet} />
-              <Text style={styles.bulletText}>Flight Day</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity 
-              style={styles.bulletContainer} 
-              onPress={() => navigation.navigate('LandingScreen')}
-            >
-              <View style={styles.bullet} />
-              <Text style={styles.bulletText}>Landing</Text>
-            </TouchableOpacity>
+            {[
+              { label: 'Pre-Trip Inspection', route: 'PreTripScreen' },
+              { label: 'Flight Day', route: 'FlightDayScreen' },
+              { label: 'Landing', route: 'LandingScreen' },
+            ].map((item, index) => (
+              <TouchableOpacity 
+                key={index}
+                style={styles.bulletContainer} 
+                onPress={() => navigation.navigate(item.route)}
+              >
+                <View style={styles.bullet} />
+                <Text style={styles.bulletText}>{item.label}</Text>
+              </TouchableOpacity>
+            ))}
           </View>
 
           <Text style={styles.introText}>
             Follow each step of the journey and mark completed items on the Checklist. You’ve got this! Let’s make your first flight fun and stress-free. 
-            {"\n\n"}
-            Oh, and don’t worry, even the dodo learned to soar… just in its own way!
+            {"\n\n"}Oh, and don’t worry, even the dodo learned to soar… just in its own way!
           </Text>
 
         </View>
       </ScrollView>
 
-      {/* Gradient Overlay for Scroll Hint */}
       <View style={styles.scrollHint} />
 
-      {/* Back & Next Buttons */}
       <View style={styles.buttonContainer}>
         <TouchableOpacity 
           style={[styles.navButton, styles.backButton]} 
@@ -101,43 +87,45 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingBottom: 100,
+    paddingBottom: insetBottom + 140,
   },
   innerContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    paddingHorizontal: 20,
   },
   title: {
-    fontSize: 35,
-    fontWeight: 'bold',
+    fontSize: 34,
+    fontWeight: '700',
     marginTop: 60,
-    marginBottom: 5,
+    marginBottom: 15,
     color: '#333',
     textAlign: 'center',
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 240,
+    height: 240,
     borderRadius: 20,
     marginBottom: 20,
+    marginTop: 20,
+    alignSelf: 'center',
+    resizeMode: 'contain',
   },
   introText: {
     fontSize: 18,
     color: '#333',
     textAlign: 'center',
     marginBottom: 20,
+    lineHeight: 26,
   },
   listContainer: {
-    marginBottom: 20,
+    marginBottom: 25,
   },
   bulletContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 15,
-    marginLeft: 40,
-    marginRight: 40,
-    justifyContent: 'flex-start',
+    marginBottom: 18,
+    marginHorizontal: 35,
   },
   bullet: {
     width: 10,
@@ -150,24 +138,26 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#333',
     textDecorationLine: 'underline',
+    flexShrink: 1,
   },
-  /* Gradient Overlay for Scroll Hint */
   scrollHint: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    height: 120,
-    backgroundColor: 'rgba(232, 232, 232, 0.9)',
+    height: 100,
+    backgroundColor: 'rgba(232, 232, 232, 0.75)',
   },
-  /* Fixed Buttons at the Bottom */
   buttonContainer: {
     position: 'absolute',
-    bottom: 50,
-    left: 20,
-    right: 20,
+    bottom: insetBottom + 10,
+    left: 25,
+    right: 25,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: 'rgba(232, 232, 232, 0.6)',
+    borderRadius: 20,
+    paddingVertical: 10,
   },
   navButton: {
     flex: 1,
@@ -175,7 +165,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     alignItems: 'center',
     borderWidth: 1,
-    marginHorizontal: 5,
+    marginHorizontal: 8,
   },
   backButton: {
     backgroundColor: '#5DA3A3',

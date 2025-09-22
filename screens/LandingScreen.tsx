@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { initialWindowMetrics } from 'react-native-safe-area-context';
 
-const { height } = Dimensions.get('window');
+const insetBottom = initialWindowMetrics?.insets.bottom ?? 0;
 
 const LandingScreen = ({ navigation }: any) => {
   return (
@@ -12,7 +13,6 @@ const LandingScreen = ({ navigation }: any) => {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Image */}
         <Image 
           source={require('../assets/dodo_landing.png')} 
           style={styles.image}
@@ -21,48 +21,29 @@ const LandingScreen = ({ navigation }: any) => {
         <Text style={styles.title}>Landing</Text>
         
         <View style={styles.listContainer}>
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('LandingDisembarkPlane')}>
-              Disembark the plane and follow signs to airport
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('LandingPassportControl')}>
-              Proceed to passport control
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('LandingRetrieveLuggage')}>
-              Retrieve your luggage
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('LandingExitAirport')}>
-              Exit the airport
-            </Text>
-          </View>
-
-          <View style={styles.bulletContainer}>
-            <View style={styles.bullet}></View>
-            <Text style={styles.bulletText} onPress={() => navigation.navigate('LandingChooseTransport')}>
-              Choose transportation to your destination
-            </Text>
-          </View>
+          {[
+            { label: 'Disembark the plane and follow signs to airport', route: 'LandingDisembarkPlane' },
+            { label: 'Proceed to passport control', route: 'LandingPassportControl' },
+            { label: 'Retrieve your luggage', route: 'LandingRetrieveLuggage' },
+            { label: 'Exit the airport', route: 'LandingExitAirport' },
+            { label: 'Choose transportation to your destination', route: 'LandingChooseTransport' },
+          ].map((item, index) => (
+            <View key={index} style={styles.bulletContainer}>
+              <View style={styles.bullet}></View>
+              <Text 
+                style={styles.bulletText} 
+                onPress={() => navigation.navigate(item.route)}
+              >
+                {item.label}
+              </Text>
+            </View>
+          ))}
         </View>
       </ScrollView>
 
-      {/* Fixed Buttons at the Bottom */}
       <View style={styles.scrollHint} />
 
       <View style={styles.buttonContainer}>
-        {/* Back Button */}
         <TouchableOpacity 
           style={[styles.navButton, styles.backButton]} 
           onPress={() => navigation.goBack()}
@@ -70,7 +51,6 @@ const LandingScreen = ({ navigation }: any) => {
           <Text style={styles.navButtonText}>Back</Text>
         </TouchableOpacity>
 
-        {/* Next Button */}
         <TouchableOpacity 
           style={[styles.navButton, styles.nextButton]} 
           onPress={() => navigation.navigate('ChecklistScreen')}
@@ -91,13 +71,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingBottom: 120,
+    paddingBottom: 140,
   },
   title: {
-    fontSize: 35,
-    fontWeight: 'bold',
+    fontSize: 34,
+    fontWeight: '700',
     marginTop: 20,
-    marginBottom: 50,
+    marginBottom: 40,
     color: '#333',
     textAlign: 'center',
   },
@@ -107,10 +87,8 @@ const styles = StyleSheet.create({
   bulletContainer: {
     flexDirection: 'row', 
     alignItems: 'center', 
-    marginBottom: 15, 
-    marginLeft: 40,
-    marginRight: 40,
-    justifyContent: 'flex-start',
+    marginBottom: 18, 
+    marginHorizontal: 35,
   },
   bullet: {
     width: 10,  
@@ -123,22 +101,26 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#333',
     textDecorationLine: 'underline',
+    flexShrink: 1,
   },
   image: {
-    width: 250,
-    height: 250,
+    width: 240,
+    height: 240,
     borderRadius: 20,
-    marginBottom: 5,
+    marginBottom: 15,
     alignSelf: 'center',
-    marginTop: 80,
+    marginTop: 70,
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 60,
-    left: 20,
-    right: 20,
+    bottom: insetBottom + 10,
+    left: 25,
+    right: 25,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: 'rgba(232, 232, 232, 0.6)',
+    borderRadius: 20,
+    paddingVertical: 10,
   },
   navButton: {
     flex: 1,
@@ -146,7 +128,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     alignItems: 'center',
     borderWidth: 1,
-    marginHorizontal: 5,
+    marginHorizontal: 8,
   },
   backButton: {
     backgroundColor: '#5DA3A3',
@@ -166,8 +148,8 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 120,
-    backgroundColor: 'rgba(232, 232, 232, 0.9)',
+    height: 100,
+    backgroundColor: 'rgba(232, 232, 232, 0.75)',
   },
 });
 

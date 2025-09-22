@@ -1,5 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { initialWindowMetrics } from 'react-native-safe-area-context';
+
+const insetBottom = initialWindowMetrics?.insets.bottom ?? 0;
 
 const WelcomeScreen = ({ navigation }: any) => {
   return (
@@ -11,12 +14,14 @@ const WelcomeScreen = ({ navigation }: any) => {
       <Text style={styles.title}>First Time Flyer</Text>
       <Text style={styles.subheading}>Taking the stress out of the airport experience</Text>
       
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('IntroScreen')} 
-      >
-        <Text style={styles.buttonText}>Let's Fly!</Text>
-      </TouchableOpacity>
+      <View style={styles.buttonWrapper}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('IntroScreen')} 
+        >
+          <Text style={styles.buttonText}>Let's Fly!</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -24,25 +29,36 @@ const WelcomeScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
     backgroundColor: '#E8E8E8',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingTop: 100,
+    paddingHorizontal: 20,
   },
   title: {
-    fontSize: 36,
-    fontWeight: '600',
-    marginBottom: 20,
+    fontSize: 38,
+    fontWeight: '700',
+    marginTop: 15,
+    marginBottom: 10,
     color: '#333',
     textAlign: 'center',
-    fontFamily: 'Roboto', 
+    fontFamily: 'Roboto',
   },
   subheading: {
     fontSize: 18,
+    color: '#555',
     textAlign: 'center',
-    color: '#777',
-    marginBottom: 40,
-    fontFamily: 'Roboto', 
+    marginBottom: 60,
+    paddingHorizontal: 25,
+    lineHeight: 26,
+    fontFamily: 'Roboto',
+  },
+  buttonWrapper: {
+    position: 'absolute',
+    bottom: insetBottom + 35,
+    left: 25,
+    right: 25,
+    alignItems: 'center',
   },
   button: {
     backgroundColor: '#2A6478',
@@ -51,26 +67,22 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 40,
     borderRadius: 30,
-    marginBottom: 15,
+    width: '85%',
     alignItems: 'center',
-    width: '70%',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.15,
-    shadowRadius: 15,
-    elevation: 5,
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: 17,
     color: '#FFFFFF',
-    fontWeight: 'bold',
+    fontWeight: '700',
     fontFamily: 'Roboto',
   },
   image: {
-    width: 300,  
-    height: 300,
-    borderRadius: 20,  
-    marginBottom: 30,
+    width: 320,
+    height: 320,
+    borderRadius: 25,
+    marginBottom: 35,
+    marginTop: 20,
+    resizeMode: 'contain',
   },
 });
 
