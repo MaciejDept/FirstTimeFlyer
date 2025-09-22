@@ -2,7 +2,7 @@
   "expo": {
     "name": "First Time Flyer",
     "slug": "SimpleFlyApp",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -14,7 +14,7 @@
     },
     "android": {
       "package": "com.popoturapps.firsttimefly",
-      "versionCode": 4,
+      "versionCode": 5,
       "compileSdkVersion": 35,
       "targetSdkVersion": 35,
       "adaptiveIcon": {
