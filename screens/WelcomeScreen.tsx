@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: {
     position: 'absolute',
-    bottom: insetBottom + 35,
+    bottom: insetBottom + 140,
     left: 25,
     right: 25,
     alignItems: 'center',
@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     width: '85%',
     alignItems: 'center',
+    elevation: 3,
   },
   buttonText: {
     fontSize: 17,

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Checkbox } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { initialWindowMetrics } from 'react-native-safe-area-context';
+
+const insetBottom = initialWindowMetrics?.insets.bottom ?? 0;
 
 const ChecklistScreen = ({ navigation }: any) => {
   const checklistItems = [
@@ -39,9 +42,7 @@ const ChecklistScreen = ({ navigation }: any) => {
     const loadState = async () => {
       try {
         const savedState = await AsyncStorage.getItem('checkedItems');
-        if (savedState) {
-          setCheckedItems(JSON.parse(savedState));
-        }
+        if (savedState) setCheckedItems(JSON.parse(savedState));
       } catch (error) {
         console.log('Error loading state:', error);
       }
@@ -68,13 +69,13 @@ const ChecklistScreen = ({ navigation }: any) => {
     });
   };
 
-  const isAllChecked = checkedItems.every(item => item); // Check if all items are checked
+  const isAllChecked = checkedItems.every(item => item);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Travel Checklist</Text>
+      <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+        <Text style={styles.title}>Travel Checklist</Text>
 
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
         {checklistItems.map((section, sectionIndex) => (
           <View key={sectionIndex} style={styles.section}>
             <Text style={styles.sectionTitle}>{section.title}</Text>
@@ -87,7 +88,7 @@ const ChecklistScreen = ({ navigation }: any) => {
                   <Checkbox
                     status={checkedItems[absoluteIndex] ? 'checked' : 'unchecked'}
                     onPress={() => toggleCheckbox(absoluteIndex)}
-                    color="#417D7D" // Teal checkbox color
+                    color="#417D7D"
                   />
                   <Text style={styles.bulletText}>{item}</Text>
                 </View>
@@ -97,24 +98,24 @@ const ChecklistScreen = ({ navigation }: any) => {
         ))}
       </ScrollView>
 
-      {/* Transparent Overlay behind Buttons */}
+      {/* Transparent overlay */}
       <View style={styles.scrollHint} />
 
-      {/* Back & Complete Buttons */}
+      {/* Button row */}
       <View style={styles.buttonContainer}>
         <TouchableOpacity 
-          style={[styles.button, { backgroundColor: '#5DA3A3' }]} 
+          style={[styles.navButton, styles.backButton]} 
           onPress={() => navigation.goBack()}
         >
-          <Text style={styles.buttonText}>Back</Text>
+          <Text style={styles.navButtonText}>Back</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[styles.button, { backgroundColor: isAllChecked ? '#5DA3A3' : '#B4B4B4' }]}
+          style={[styles.navButton, styles.nextButton, !isAllChecked && styles.disabledButton]}
           onPress={() => navigation.navigate('Congratulations')}
           disabled={!isAllChecked}
         >
-          <Text style={styles.buttonText}>Complete</Text>
+          <Text style={styles.navButtonText}>Complete</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -122,80 +123,64 @@ const ChecklistScreen = ({ navigation }: any) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    paddingTop: 60,
-    backgroundColor: '#E8E8E8',
-  },
+  container: { flex: 1, backgroundColor: '#E8E8E8' },
+  scrollContainer: { paddingBottom: 160 },
   title: {
-    fontSize: 30,
-    fontWeight: 'bold',
+    fontSize: 34,
+    fontWeight: '700',
+    marginTop: 100,
+    marginBottom: 30,
     color: '#333',
     textAlign: 'center',
-    marginVertical: 30,
   },
-  scrollContainer: {
-    paddingVertical: 10,
-    width: '100%',
-    paddingBottom: 160, // ensure space for buttons
-  },
-  section: {
-    marginBottom: 20, 
-  },
+  section: { marginBottom: 30 },
   sectionTitle: {
     fontSize: 22,
-    fontWeight: 'bold',
+    fontWeight: '600',
     color: '#333',
-    marginBottom: 30,  
+    marginBottom: 20,
     textAlign: 'center',
   },
   bulletContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
-    width: '100%',
-    paddingVertical: 5, 
-    paddingHorizontal: 10, 
+    marginBottom: 18,
+    marginHorizontal: 35,
   },
   bulletText: {
-    fontSize: 16,
+    fontSize: 18,
     color: '#333',
-    marginLeft: 10,
     flexShrink: 1,
-    flexWrap: 'wrap',  
-    width: '90%',      
   },
-  /* Translucent overlay like IntroScreen */
   scrollHint: {
     position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 120,
-    backgroundColor: 'rgba(232, 232, 232, 0.9)',
+    bottom: 0, left: 0, right: 0,
+    height: 100,
+    backgroundColor: 'rgba(232, 232, 232, 0.75)',
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 40,
-    left: 20,
-    right: 20,
+    bottom: insetBottom + 10,
+    left: 25,
+    right: 25,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: 'rgba(232, 232, 232, 0.6)',
+    borderRadius: 20,
+    paddingVertical: 10,
   },
-  button: {
+  navButton: {
+    flex: 1,
     paddingVertical: 12,
-    paddingHorizontal: 30,
     borderRadius: 25,
     alignItems: 'center',
-    flex: 1,
-    marginHorizontal: 10,
+    borderWidth: 1,
+    marginHorizontal: 8,
   },
-  buttonText: {
-    fontSize: 16,
-    color: '#fff',
-    fontWeight: 'bold',
-  },
+  backButton: { backgroundColor: '#5DA3A3', borderColor: '#417D7D' },
+  nextButton: { backgroundColor: '#5DA3A3', borderColor: '#417D7D' },
+  disabledButton: { backgroundColor: '#B4B4B4', borderColor: '#999' },
+  navButtonText: { fontSize: 16, fontWeight: 'bold', color: '#fff' },
 });
 
 export default ChecklistScreen;

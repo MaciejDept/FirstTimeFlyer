@@ -45,7 +45,7 @@ const Congratulations = ({ navigation }: any) => {
           style={[styles.button, { backgroundColor: '#417D7D' }]} 
           onPress={() => navigation.goBack()}
         >
-          <Text style={styles.buttonText}>⬅ Back</Text>
+          <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 6,
-    elevation: 3, // Android shadow
+    elevation: 3, 
   },
   buttonText: {
     fontSize: 17,
