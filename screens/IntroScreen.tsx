@@ -1,77 +1,74 @@
-import React, { useState } from 'react';
-import { 
-  View, Text, StyleSheet, TouchableOpacity, ScrollView, Image 
-} from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { initialWindowMetrics } from 'react-native-safe-area-context';
+import commonStyles, { Colors } from '../commonStyles';
 
 const insetBottom = initialWindowMetrics?.insets.bottom ?? 0;
 
-const IntroScreen = ({ navigation }: any) => {
-  const [expanded, setExpanded] = useState(false);
+const sections = [
+  { label: 'Pre-Trip Inspection', route: 'PreTripScreen' },
+  { label: 'Flight Day', route: 'FlightDayScreen' },
+  { label: 'Landing', route: 'LandingScreen' },
+];
 
+const IntroScreen = ({ navigation }: any) => {
   return (
-    <View style={styles.container}>
-      <ScrollView 
-        style={styles.scrollContainer} 
-        contentContainerStyle={styles.scrollContent}
+    <View style={commonStyles.hubContainer}>
+      <ScrollView
+        style={commonStyles.scrollContainer}
+        contentContainerStyle={[styles.scrollContent, { paddingBottom: insetBottom + 140 }]}
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.innerContainer}>
-          
-          <Text style={styles.title}>Welcome!</Text>
+          <Text style={commonStyles.hubTitle}>Welcome!</Text>
 
-          <Image 
+          <Image
             source={require('../assets/welcome_dodo.png')}
             style={styles.image}
           />
 
           <Text style={styles.introText}>
-            Flying for the first time can be a stressful experience ... 
-            {"\n\n"}No worries, we’re here to help! 
-            {"\n\n"}From packing your bags to landing at your destination, we’ll guide you through each step of the way. 
-            {"\n\n"}Every flight journey consists of 3 parts:
+            Flying for the first time can feel overwhelming — but it doesn't have to be.{'\n\n'}We'll walk you through every step, from packing your bags to landing at your destination.{'\n\n'}Your journey has three phases:
           </Text>
 
-          <View style={styles.listContainer}>
-            {[
-              { label: 'Pre-Trip Inspection', route: 'PreTripScreen' },
-              { label: 'Flight Day', route: 'FlightDayScreen' },
-              { label: 'Landing', route: 'LandingScreen' },
-            ].map((item, index) => (
-              <TouchableOpacity 
+          <View style={styles.sectionList}>
+            {sections.map((item, index) => (
+              <TouchableOpacity
                 key={index}
-                style={styles.bulletContainer} 
+                style={styles.sectionCard}
                 onPress={() => navigation.navigate(item.route)}
+                activeOpacity={0.75}
               >
-                <View style={styles.bullet} />
-                <Text style={styles.bulletText}>{item.label}</Text>
+                <View style={styles.cardDot} />
+                <Text style={styles.cardText}>{item.label}</Text>
+                <Text style={styles.cardChevron}>›</Text>
               </TouchableOpacity>
             ))}
           </View>
 
           <Text style={styles.introText}>
-            Follow each step of the journey and mark completed items on the Checklist. You’ve got this! Let’s make your first flight fun and stress-free. 
-            {"\n\n"}Oh, and don’t worry, even the dodo learned to soar… just in its own way!
+            Follow along, tick off each step on the checklist, and you'll be a pro by the time you land.{'\n\n'}Even the dodo learned to soar — just in its own way! 🦤
           </Text>
-
         </View>
       </ScrollView>
 
-      <View style={styles.scrollHint} />
+      <View style={commonStyles.hubScrollHint} />
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity 
-          style={[styles.navButton, styles.backButton]} 
-          onPress={() => navigation.goBack()}
+      <View style={commonStyles.hubButtonContainer}>
+        <TouchableOpacity
+          style={[commonStyles.hubNavButton, commonStyles.hubBackButton]}
+          onPress={() => navigation.navigate('WelcomeScreen')}
+          activeOpacity={0.8}
         >
-          <Text style={styles.navButtonText}>Back</Text>
+          <Text style={commonStyles.hubNavButtonTextDark}>Back</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity 
-          style={[styles.navButton, styles.nextButton]} 
+        <TouchableOpacity
+          style={[commonStyles.hubNavButton, commonStyles.hubNextButton]}
           onPress={() => navigation.navigate('PreTripScreen')}
+          activeOpacity={0.85}
         >
-          <Text style={styles.navButtonText}>Next</Text>
+          <Text style={commonStyles.hubNavButtonText}>Get Started</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -79,106 +76,68 @@ const IntroScreen = ({ navigation }: any) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#E8E8E8',
-  },
-  scrollContainer: {
-    flex: 1,
-  },
   scrollContent: {
-    paddingBottom: insetBottom + 140,
+    flexGrow: 1,
   },
   innerContainer: {
-    justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
-  },
-  title: {
-    fontSize: 34,
-    fontWeight: '700',
-    marginTop: 60,
-    marginBottom: 15,
-    color: '#333',
-    textAlign: 'center',
+    paddingHorizontal: 24,
+    paddingTop: 16,
   },
   image: {
-    width: 240,
-    height: 240,
-    borderRadius: 20,
-    marginBottom: 20,
-    marginTop: 20,
+    width: 220,
+    height: 220,
+    marginBottom: 28,
+    marginTop: 4,
     alignSelf: 'center',
     resizeMode: 'contain',
   },
   introText: {
-    fontSize: 18,
-    color: '#333',
+    fontSize: 16,
+    color: Colors.textSecondary,
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: 24,
     lineHeight: 26,
   },
-  listContainer: {
-    marginBottom: 25,
+  sectionList: {
+    width: '100%',
+    marginBottom: 24,
   },
-  bulletContainer: {
+  sectionCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 18,
-    marginHorizontal: 35,
-  },
-  bullet: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: '#417D7D',
-    marginRight: 10,
-  },
-  bulletText: {
-    fontSize: 18,
-    color: '#333',
-    textDecorationLine: 'underline',
-    flexShrink: 1,
-  },
-  scrollHint: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 100,
-    backgroundColor: 'rgba(232, 232, 232, 0.75)',
-  },
-  buttonContainer: {
-    position: 'absolute',
-    bottom: insetBottom + 10,
-    left: 25,
-    right: 25,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: 'rgba(232, 232, 232, 0.6)',
-    borderRadius: 20,
-    paddingVertical: 10,
-  },
-  navButton: {
-    flex: 1,
-    paddingVertical: 12,
-    borderRadius: 25,
-    alignItems: 'center',
+    backgroundColor: Colors.surface,
+    borderRadius: 14,
+    paddingVertical: 16,
+    paddingHorizontal: 18,
+    marginBottom: 10,
     borderWidth: 1,
-    marginHorizontal: 8,
+    borderColor: Colors.border,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 2,
   },
-  backButton: {
-    backgroundColor: '#5DA3A3',
-    borderColor: '#417D7D',
+  cardDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: Colors.primary,
+    marginRight: 14,
+    flexShrink: 0,
   },
-  nextButton: {
-    backgroundColor: '#5DA3A3',
-    borderColor: '#417D7D',
-  },
-  navButtonText: {
+  cardText: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#fff',
+    color: Colors.textPrimary,
+    fontWeight: '500',
+    flex: 1,
+  },
+  cardChevron: {
+    fontSize: 22,
+    color: Colors.textMuted,
+    fontWeight: '300',
+    lineHeight: 26,
   },
 });
 

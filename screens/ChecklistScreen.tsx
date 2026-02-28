@@ -3,12 +3,14 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 import { Checkbox } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { initialWindowMetrics } from 'react-native-safe-area-context';
+import { Colors } from '../commonStyles';
 
 const insetBottom = initialWindowMetrics?.insets.bottom ?? 0;
 
-const ChecklistScreen = ({ navigation }: any) => {
-  const checklistItems = [
-    { title: 'Pre-Trip Inspection', items: [
+const checklistItems = [
+  {
+    title: 'Pre-Trip Inspection',
+    items: [
       'Check flight details',
       'Online check-in and print/save boarding pass',
       'Check baggage allowance and policies',
@@ -16,8 +18,11 @@ const ChecklistScreen = ({ navigation }: any) => {
       'Set travel reminders',
       'Confirm transport to airport',
       'Check health and safety requirements',
-    ]},
-    { title: 'Flight Day', items: [
+    ],
+  },
+  {
+    title: 'Flight Day',
+    items: [
       'Arrive at the airport 2-3 hours early',
       'Check in and drop off luggage',
       'Go through security',
@@ -25,17 +30,23 @@ const ChecklistScreen = ({ navigation }: any) => {
       'Wait for boarding',
       'Board the plane',
       'Enjoy the flight!',
-    ]},
-    { title: 'Landing', items: [
+    ],
+  },
+  {
+    title: 'Landing',
+    items: [
       'Disembark the plane',
       'Proceed to passport control',
       'Retrieve your luggage',
       'Exit the airport',
       'Choose transportation to your destination',
-    ]},
-  ];
+    ],
+  },
+];
 
-  const totalItems = checklistItems.reduce((acc, section) => acc + section.items.length, 0);
+const totalItems = checklistItems.reduce((acc, s) => acc + s.items.length, 0);
+
+const ChecklistScreen = ({ navigation }: any) => {
   const [checkedItems, setCheckedItems] = useState<boolean[]>(new Array(totalItems).fill(false));
 
   useEffect(() => {
@@ -62,60 +73,95 @@ const ChecklistScreen = ({ navigation }: any) => {
   }, [checkedItems]);
 
   const toggleCheckbox = (index: number) => {
-    setCheckedItems(prevState => {
-      const newState = [...prevState];
-      newState[index] = !newState[index];
-      return newState;
+    setCheckedItems(prev => {
+      const next = [...prev];
+      next[index] = !next[index];
+      return next;
     });
   };
 
-  const isAllChecked = checkedItems.every(item => item);
+  const checkedCount = checkedItems.filter(Boolean).length;
+  const isAllChecked = checkedCount === totalItems;
+  const progress = checkedCount / totalItems;
 
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* Header */}
         <Text style={styles.title}>Travel Checklist</Text>
 
-        {checklistItems.map((section, sectionIndex) => (
-          <View key={sectionIndex} style={styles.section}>
-            <Text style={styles.sectionTitle}>{section.title}</Text>
-            {section.items.map((item, itemIndex) => {
-              const absoluteIndex = checklistItems
-                .slice(0, sectionIndex)
-                .reduce((acc, sec) => acc + sec.items.length, 0) + itemIndex;
-              return (
-                <View key={absoluteIndex} style={styles.bulletContainer}>
-                  <Checkbox
-                    status={checkedItems[absoluteIndex] ? 'checked' : 'unchecked'}
-                    onPress={() => toggleCheckbox(absoluteIndex)}
-                    color="#417D7D"
-                  />
-                  <Text style={styles.bulletText}>{item}</Text>
-                </View>
-              );
-            })}
+        {/* Progress bar */}
+        <View style={styles.progressRow}>
+          <View style={styles.progressTrack}>
+            <View style={[styles.progressFill, { width: `${progress * 100}%` as any }]} />
           </View>
-        ))}
+          <Text style={styles.progressLabel}>{checkedCount}/{totalItems}</Text>
+        </View>
+
+        {/* Sections */}
+        {checklistItems.map((section, sectionIndex) => {
+          const sectionOffset = checklistItems
+            .slice(0, sectionIndex)
+            .reduce((acc, s) => acc + s.items.length, 0);
+
+          return (
+            <View key={sectionIndex} style={styles.section}>
+              <Text style={styles.sectionTitle}>{section.title}</Text>
+              <View style={styles.sectionCard}>
+                {section.items.map((item, itemIndex) => {
+                  const absoluteIndex = sectionOffset + itemIndex;
+                  const checked = checkedItems[absoluteIndex];
+                  const isLast = itemIndex === section.items.length - 1;
+                  return (
+                    <TouchableOpacity
+                      key={absoluteIndex}
+                      style={[styles.checkRow, !isLast && styles.checkRowBorder]}
+                      onPress={() => toggleCheckbox(absoluteIndex)}
+                      activeOpacity={0.7}
+                    >
+                      <Checkbox
+                        status={checked ? 'checked' : 'unchecked'}
+                        onPress={() => toggleCheckbox(absoluteIndex)}
+                        color={Colors.primary}
+                        uncheckedColor={Colors.textMuted}
+                      />
+                      <Text style={[styles.checkText, checked && styles.checkTextDone]}>
+                        {item}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            </View>
+          );
+        })}
       </ScrollView>
 
-      {/* Transparent overlay */}
+      {/* Scroll fade */}
       <View style={styles.scrollHint} />
 
       {/* Button row */}
       <View style={styles.buttonContainer}>
-        <TouchableOpacity 
-          style={[styles.navButton, styles.backButton]} 
+        <TouchableOpacity
+          style={[styles.navButton, styles.backButton]}
           onPress={() => navigation.goBack()}
+          activeOpacity={0.8}
         >
-          <Text style={styles.navButtonText}>Back</Text>
+          <Text style={[styles.navButtonText, styles.navButtonTextDark]}>Back</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[styles.navButton, styles.nextButton, !isAllChecked && styles.disabledButton]}
+          style={[styles.navButton, styles.completeButton, !isAllChecked && styles.disabledButton]}
           onPress={() => navigation.navigate('Congratulations')}
           disabled={!isAllChecked}
+          activeOpacity={0.85}
         >
-          <Text style={styles.navButtonText}>Complete</Text>
+          <Text style={[styles.navButtonText, !isAllChecked && styles.disabledText]}>
+            Complete ✓
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -123,64 +169,147 @@ const ChecklistScreen = ({ navigation }: any) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#E8E8E8' },
-  scrollContainer: { paddingBottom: 160 },
+  container: {
+    flex: 1,
+    backgroundColor: Colors.background,
+  },
+  scrollContent: {
+    paddingTop: 72,
+    paddingBottom: 160,
+    paddingHorizontal: 24,
+  },
   title: {
-    fontSize: 34,
-    fontWeight: '700',
-    marginTop: 100,
-    marginBottom: 30,
-    color: '#333',
+    fontSize: 30,
+    fontWeight: '800',
+    color: Colors.textPrimary,
     textAlign: 'center',
-  },
-  section: { marginBottom: 30 },
-  sectionTitle: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: '#333',
     marginBottom: 20,
-    textAlign: 'center',
+    letterSpacing: 0.3,
   },
-  bulletContainer: {
+  progressRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 18,
-    marginHorizontal: 35,
+    marginBottom: 32,
+    gap: 12,
   },
-  bulletText: {
-    fontSize: 18,
-    color: '#333',
+  progressTrack: {
+    flex: 1,
+    height: 6,
+    backgroundColor: Colors.surface,
+    borderRadius: 3,
+    overflow: 'hidden',
+  },
+  progressFill: {
+    height: 6,
+    backgroundColor: Colors.primary,
+    borderRadius: 3,
+  },
+  progressLabel: {
+    fontSize: 13,
+    color: Colors.textSecondary,
+    fontWeight: '600',
+    minWidth: 36,
+    textAlign: 'right',
+  },
+  section: {
+    marginBottom: 24,
+  },
+  sectionTitle: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: Colors.primary,
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+    marginBottom: 10,
+    marginLeft: 4,
+  },
+  sectionCard: {
+    backgroundColor: Colors.surface,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    overflow: 'hidden',
+  },
+  checkRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 14,
+    paddingHorizontal: 12,
+  },
+  checkRowBorder: {
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.border,
+  },
+  checkText: {
+    fontSize: 15,
+    color: Colors.textPrimary,
     flexShrink: 1,
+    lineHeight: 22,
+    marginLeft: 4,
+  },
+  checkTextDone: {
+    color: Colors.textMuted,
+    textDecorationLine: 'line-through',
   },
   scrollHint: {
     position: 'absolute',
-    bottom: 0, left: 0, right: 0,
-    height: 100,
-    backgroundColor: 'rgba(232, 232, 232, 0.75)',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 110,
+    backgroundColor: 'rgba(247, 248, 250, 0.92)',
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: insetBottom + 10,
-    left: 25,
-    right: 25,
+    bottom: insetBottom + 14,
+    left: 20,
+    right: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'rgba(232, 232, 232, 0.6)',
-    borderRadius: 20,
+    backgroundColor: 'rgba(247, 248, 250, 0.88)',
+    borderRadius: 18,
     paddingVertical: 10,
+    paddingHorizontal: 8,
+    borderWidth: 1,
+    borderColor: Colors.border,
   },
   navButton: {
     flex: 1,
-    paddingVertical: 12,
-    borderRadius: 25,
+    paddingVertical: 14,
+    borderRadius: 14,
     alignItems: 'center',
-    borderWidth: 1,
-    marginHorizontal: 8,
+    marginHorizontal: 5,
   },
-  backButton: { backgroundColor: '#5DA3A3', borderColor: '#417D7D' },
-  nextButton: { backgroundColor: '#5DA3A3', borderColor: '#417D7D' },
-  disabledButton: { backgroundColor: '#B4B4B4', borderColor: '#999' },
-  navButtonText: { fontSize: 16, fontWeight: 'bold', color: '#fff' },
+  backButton: {
+    backgroundColor: Colors.surface,
+    borderWidth: 1,
+    borderColor: Colors.border,
+  },
+  completeButton: {
+    backgroundColor: Colors.primary,
+    shadowColor: Colors.primary,
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 10,
+    elevation: 4,
+  },
+  disabledButton: {
+    backgroundColor: Colors.disabled,
+    shadowOpacity: 0,
+    elevation: 0,
+  },
+  navButtonText: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: Colors.white,
+    letterSpacing: 0.3,
+  },
+  navButtonTextDark: {
+    color: Colors.textPrimary,
+  },
+  disabledText: {
+    color: Colors.disabledText,
+  },
 });
 
 export default ChecklistScreen;

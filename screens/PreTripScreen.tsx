@@ -1,64 +1,73 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Dimensions } from 'react-native';
-import { initialWindowMetrics } from 'react-native-safe-area-context';
+import { View, Text, TouchableOpacity, Image, ScrollView, StyleSheet } from 'react-native';
+import commonStyles, { Colors } from '../commonStyles';
 
-const { height } = Dimensions.get('window');
-const insetBottom = initialWindowMetrics?.insets.bottom ?? 0;
+const items = [
+  { label: 'Check flight details', route: 'PreTripCheckFlightDetails' },
+  { label: 'Online check-in and print/save boarding pass', route: 'PreTripOnlineCheckIn' },
+  { label: "Check your baggage allowance and airline's baggage policies", route: 'PreTripBaggageCheck' },
+  { label: 'Pack bags according to airline rules', route: 'PreTripPackYourBags' },
+  { label: 'Set travel reminders', route: 'PreTripSetTravelReminders' },
+  { label: 'Confirm airport transport', route: 'PreTripAirportTransfer' },
+  { label: 'Check health/safety requirements', route: 'PreTripHealthSafety' },
+];
 
 const PreTripScreen = ({ navigation }: any) => {
   return (
-    <View style={styles.container}>
-      
-      <ScrollView 
-        style={styles.scrollContainer}
-        contentContainerStyle={styles.scrollContent}
+    <View style={commonStyles.hubContainer}>
+      <ScrollView
+        style={commonStyles.scrollContainer}
+        contentContainerStyle={commonStyles.hubScrollContent}
         showsVerticalScrollIndicator={false}
       >
-        <Image 
-          source={require('../assets/dodo_inspect.png')} 
-          style={styles.image}  
-        />  
+        <Image
+          source={require('../assets/dodo_inspect.png')}
+          style={commonStyles.hubImage}
+        />
 
-        <Text style={styles.title}>Pre-Trip Inspection</Text>
-        
-        <View style={styles.listContainer}>
-          {[
-            { label: 'Check flight details', route: 'PreTripCheckFlightDetails' },
-            { label: 'Online check-in and print/save boarding pass', route: 'PreTripOnlineCheckIn' },
-            { label: 'Check your baggage allowance and airline\'s baggage policies', route: 'PreTripBaggageCheck' },
-            { label: 'Pack bags according to airline rules', route: 'PreTripPackYourBags' },
-            { label: 'Set travel reminders', route: 'PreTripSetTravelReminders' },
-            { label: 'Confirm airport transport', route: 'PreTripAirportTransfer' },
-            { label: 'Check health/safety requirements', route: 'PreTripHealthSafety' },
-          ].map((item, index) => (
-            <View key={index} style={styles.bulletContainer}>
-              <View style={styles.bullet}></View>
-              <Text 
-                style={styles.bulletText} 
-                onPress={() => navigation.navigate(item.route)}
-              >
-                {item.label}
-              </Text>
-            </View>
+        <Text style={commonStyles.hubTitle}>Pre-Trip Inspection</Text>
+
+        <View style={commonStyles.hubListContainer}>
+          {items.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              style={commonStyles.hubBulletContainer}
+              onPress={() => navigation.navigate(item.route)}
+              activeOpacity={0.75}
+            >
+              <View style={commonStyles.hubBullet} />
+              <Text style={commonStyles.hubBulletText}>{item.label}</Text>
+              <Text style={styles.chevron}>›</Text>
+            </TouchableOpacity>
           ))}
         </View>
       </ScrollView>
 
-      <View style={styles.scrollHint} />
+      <View style={commonStyles.hubScrollHint} />
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity 
-          style={[styles.navButton, styles.backButton]} 
-          onPress={() => navigation.goBack()}
+      <View style={commonStyles.hubButtonContainer}>
+        <TouchableOpacity
+          style={[commonStyles.hubNavButton, commonStyles.hubChecklistButton]}
+          onPress={() => navigation.navigate('ChecklistScreen')}
+          activeOpacity={0.85}
         >
-          <Text style={styles.navButtonText}>Back</Text>
+          <Text style={[commonStyles.hubNavButtonTextDark, { color: Colors.primary }]}>Checklist</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity 
-          style={[styles.navButton, styles.nextButton]} 
-          onPress={() => navigation.navigate('FlightDayScreen')}
+        <TouchableOpacity
+          style={[commonStyles.hubNavButton, commonStyles.hubBackButton]}
+          onPress={() => navigation.navigate('IntroScreen')}
+          activeOpacity={0.85}
         >
-          <Text style={styles.navButtonText}>Next</Text>
+          <Text style={commonStyles.hubNavButtonTextDark}>‹</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[commonStyles.hubNavButton, commonStyles.hubNextButton]}
+          onPress={() => navigation.navigate('FlightDayScreen')}
+          activeOpacity={0.85}
+        >
+          <Text style={commonStyles.hubNavButtonText}>›</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -66,93 +75,12 @@ const PreTripScreen = ({ navigation }: any) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#E8E8E8',
-  },
-  scrollContainer: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingBottom: 140,
-  },
-  title: {
-    fontSize: 34,
-    fontWeight: '700',
-    marginTop: 20,
-    marginBottom: 40,
-    color: '#333',
-    textAlign: 'center',
-  },
-  listContainer: {
-    marginBottom: 30,
-  },
-  bulletContainer: {
-    flexDirection: 'row', 
-    alignItems: 'center', 
-    marginBottom: 18, 
-    marginHorizontal: 35,
-  },
-  bullet: {
-    width: 10,  
-    height: 10, 
-    borderRadius: 5,  
-    backgroundColor: '#417D7D',
-    marginRight: 10,
-  },
-  bulletText: {
-    fontSize: 18,
-    color: '#333',
-    textDecorationLine: 'underline',
-    flexShrink: 1,
-  },
-  image: {
-    width: 240,  
-    height: 240,
-    borderRadius: 20,  
-    marginBottom: 15,
-    alignSelf: 'center',
-    marginTop: 70,
-  },
-  buttonContainer: {
-    position: 'absolute',
-    bottom: insetBottom + 10,
-    left: 25,
-    right: 25,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: 'rgba(232, 232, 232, 0.6)',
-    borderRadius: 20,
-    paddingVertical: 10,
-  },
-  navButton: {
-    flex: 1,
-    paddingVertical: 12,
-    borderRadius: 25,
-    alignItems: 'center',
-    borderWidth: 1,
-    marginHorizontal: 8,
-  },
-  backButton: {
-    backgroundColor: '#5DA3A3',
-    borderColor: '#417D7D',
-  },
-  nextButton: {
-    backgroundColor: '#5DA3A3',
-    borderColor: '#417D7D',
-  },
-  navButtonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
-  scrollHint: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 100,
-    backgroundColor: 'rgba(232, 232, 232, 0.75)',
+  chevron: {
+    fontSize: 22,
+    color: Colors.textMuted,
+    fontWeight: '300',
+    lineHeight: 26,
+    marginLeft: 8,
   },
 });
 

@@ -50,7 +50,7 @@ const FlightDayEnjoyFlight = ({ navigation }: any) => {
           style={[commonStyles.navButton, commonStyles.backButton]} 
           onPress={() => navigation.goBack()}
         >
-          <Text style={commonStyles.navButtonText}>Back</Text>
+          <Text style={commonStyles.navButtonTextDark}>Back</Text>
         </TouchableOpacity>
 
         {/* Checklist Button */}
