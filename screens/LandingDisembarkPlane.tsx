@@ -1,38 +1,40 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
 import commonStyles from '../commonStyles'; // Import the common styles
+import { useLanguage } from '../i18n';
 
 const LandingDisembarkPlane = ({ navigation }: any) => {
+  const { t } = useLanguage();
   return (
     <View style={commonStyles.container}>
       {/* Image */}
-      <Image 
-        source={require('../assets/page_logos/14.png')} 
-        style={commonStyles.image}  
+      <Image
+        source={require('../assets/page_logos/14.png')}
+        style={commonStyles.image}
       />
 
-      <Text style={commonStyles.title}>Disembark the Plane</Text>
-      
-      <ScrollView 
-        style={commonStyles.scrollContainer} 
+      <Text style={commonStyles.title}>{t('disembarkPlane', 'title')}</Text>
+
+      <ScrollView
+        style={commonStyles.scrollContainer}
         contentContainerStyle={commonStyles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
         {/* Bullet points container */}
         <View style={commonStyles.listContainer}>
-          <Text style={commonStyles.boldText}>Congratulations on landing!</Text>
+          <Text style={commonStyles.boldText}>{t('disembarkPlane', 'heading1')}</Text>
           <Text style={commonStyles.paragraphText}>
-            Well done—you’ve made it to your destination! The flight might have seemed long, but now you can breathe easy knowing you’re almost there. Just a few more small steps, and you’ll be all set to start your journey.
+            {t('disembarkPlane', 'body1')}
           </Text>
 
-          <Text style={commonStyles.boldText}>Wait for the seatbelt sign:</Text>
+          <Text style={commonStyles.boldText}>{t('disembarkPlane', 'heading2')}</Text>
           <Text style={commonStyles.paragraphText}>
-            Wait for the seatbelt sign to turn off and remain seated until it's safe to leave the plane. It's okay to feel a little excited or nervous—everyone has been there! The crew will make sure everything is safe before you get up.
+            {t('disembarkPlane', 'body2')}
           </Text>
 
-          <Text style={commonStyles.boldText}>Exit the plane:</Text>
+          <Text style={commonStyles.boldText}>{t('disembarkPlane', 'heading3')}</Text>
           <Text style={commonStyles.paragraphText}>
-            Once the plane has come to a complete stop, exit the aircraft and follow the signs to either Immigration or Baggage Claim. You might notice people rushing to get off, but take your time and move at your own pace.
+            {t('disembarkPlane', 'body3')}
           </Text>
         </View>
       </ScrollView>
@@ -41,19 +43,19 @@ const LandingDisembarkPlane = ({ navigation }: any) => {
 
       <View style={commonStyles.buttonContainer}>
         {/* Back Button */}
-        <TouchableOpacity 
-          style={[commonStyles.navButton, commonStyles.backButton]} 
+        <TouchableOpacity
+          style={[commonStyles.navButton, commonStyles.backButton]}
           onPress={() => navigation.goBack()}
         >
-          <Text style={commonStyles.navButtonTextDark}>Back</Text>
+          <Text style={commonStyles.navButtonTextDark}>{t('common', 'back')}</Text>
         </TouchableOpacity>
 
         {/* Checklist Button */}
-        <TouchableOpacity 
-          style={[commonStyles.navButton, commonStyles.checklistButton]} 
+        <TouchableOpacity
+          style={[commonStyles.navButton, commonStyles.checklistButton]}
           onPress={() => navigation.navigate('ChecklistScreen')}
         >
-          <Text style={commonStyles.navButtonText}>Checklist</Text>
+          <Text style={commonStyles.navButtonText}>{t('common', 'checklist')}</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { LanguageProvider, useLanguage } from './i18n';
 import WelcomeScreen from './screens/WelcomeScreen';
 import PreTripScreen from './screens/PreTripScreen';
 import PreTripAirportTransfer from './screens/PreTripAirportTransfer';
@@ -28,10 +29,12 @@ import ChecklistScreen from './screens/ChecklistScreen';
 import Congratulations from './screens/Congratulations';
 import IntroScreen from './screens/IntroScreen';
 
-// Create the stack navigator
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+function AppInner() {
+  const { isLoading } = useLanguage();
+  if (isLoading) return null;
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="WelcomeScreen">
@@ -63,5 +66,13 @@ export default function App() {
         <Stack.Screen name="IntroScreen" component={IntroScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
+  );
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AppInner />
+    </LanguageProvider>
   );
 }

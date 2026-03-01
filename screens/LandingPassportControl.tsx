@@ -1,43 +1,45 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
 import commonStyles from '../commonStyles'; // Import common styles
+import { useLanguage } from '../i18n';
 
 const LandingPassportControl = ({ navigation }: any) => {
+  const { t } = useLanguage();
   return (
     <View style={commonStyles.container}>
       {/* Image */}
-      <Image 
+      <Image
         source={require('../assets/page_logos/15.png')}
-        style={commonStyles.image}  
+        style={commonStyles.image}
       />
 
-      <Text style={commonStyles.title}>Proceed to Passport Control</Text>
-      
-      <ScrollView 
-        style={commonStyles.scrollContainer} 
+      <Text style={commonStyles.title}>{t('passportControl', 'title')}</Text>
+
+      <ScrollView
+        style={commonStyles.scrollContainer}
         contentContainerStyle={commonStyles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
         {/* Bullet points container */}
         <View style={commonStyles.listContainer}>
-          <Text style={commonStyles.boldText}>Immigration Process:</Text>
+          <Text style={commonStyles.boldText}>{t('passportControl', 'heading1')}</Text>
           <Text style={commonStyles.paragraphText}>
-            If traveling internationally, head to the Immigration area. Here, you will need to present your passport. This step is important, but don't worry—it’s a routine part of the process, and the officers are there to help.
+            {t('passportControl', 'body1')}
           </Text>
 
-          <Text style={commonStyles.boldText}>Visa Check:</Text>
+          <Text style={commonStyles.boldText}>{t('passportControl', 'heading2')}</Text>
           <Text style={commonStyles.paragraphText}>
-            If required, the officer will check your visa or travel permit. This is a quick and standard procedure to make sure everything is in order. If you're unsure about anything, just ask the officer—they are used to helping travelers and will guide you through.
+            {t('passportControl', 'body2')}
           </Text>
 
-          <Text style={commonStyles.boldText}>Answer Questions:</Text>
+          <Text style={commonStyles.boldText}>{t('passportControl', 'heading3')}</Text>
           <Text style={commonStyles.paragraphText}>
-            You may be asked a few simple questions by the immigration officer, like the purpose of your trip or how long you plan to stay. These questions are normal, and they help ensure that everything is clear and in place for your visit.
+            {t('passportControl', 'body3')}
           </Text>
 
-          <Text style={commonStyles.boldText}>Additional Documents:</Text>
+          <Text style={commonStyles.boldText}>{t('passportControl', 'heading4')}</Text>
           <Text style={commonStyles.paragraphText}>
-            Depending on where you’re traveling, the officer might ask for additional documents such as hotel bookings, your return flight details, or proof of sufficient funds for your stay. If you have these documents ready, the process will go smoothly. Don’t stress—it's just a way to verify your travel plans.
+            {t('passportControl', 'body4')}
           </Text>
         </View>
       </ScrollView>
@@ -46,19 +48,19 @@ const LandingPassportControl = ({ navigation }: any) => {
 
       <View style={commonStyles.buttonContainer}>
         {/* Back Button */}
-        <TouchableOpacity 
-          style={[commonStyles.navButton, commonStyles.backButton]} 
+        <TouchableOpacity
+          style={[commonStyles.navButton, commonStyles.backButton]}
           onPress={() => navigation.goBack()}
         >
-          <Text style={commonStyles.navButtonTextDark}>Back</Text>
+          <Text style={commonStyles.navButtonTextDark}>{t('common', 'back')}</Text>
         </TouchableOpacity>
 
         {/* Checklist Button */}
-        <TouchableOpacity 
-          style={[commonStyles.navButton, commonStyles.checklistButton]} 
+        <TouchableOpacity
+          style={[commonStyles.navButton, commonStyles.checklistButton]}
           onPress={() => navigation.navigate('ChecklistScreen')}
         >
-          <Text style={commonStyles.navButtonText}>Checklist</Text>
+          <Text style={commonStyles.navButtonText}>{t('common', 'checklist')}</Text>
         </TouchableOpacity>
       </View>
     </View>

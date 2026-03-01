@@ -1,18 +1,21 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView, StyleSheet } from 'react-native';
 import commonStyles, { Colors } from '../commonStyles';
-
-const items = [
-  { label: 'Check flight details', route: 'PreTripCheckFlightDetails' },
-  { label: 'Online check-in and print/save boarding pass', route: 'PreTripOnlineCheckIn' },
-  { label: "Check your baggage allowance and airline's baggage policies", route: 'PreTripBaggageCheck' },
-  { label: 'Pack bags according to airline rules', route: 'PreTripPackYourBags' },
-  { label: 'Set travel reminders', route: 'PreTripSetTravelReminders' },
-  { label: 'Confirm airport transport', route: 'PreTripAirportTransfer' },
-  { label: 'Check health/safety requirements', route: 'PreTripHealthSafety' },
-];
+import { useLanguage } from '../i18n';
 
 const PreTripScreen = ({ navigation }: any) => {
+  const { t } = useLanguage();
+
+  const items = [
+    { label: t('preTrip', 'item1'), route: 'PreTripCheckFlightDetails' },
+    { label: t('preTrip', 'item2'), route: 'PreTripOnlineCheckIn' },
+    { label: t('preTrip', 'item3'), route: 'PreTripBaggageCheck' },
+    { label: t('preTrip', 'item4'), route: 'PreTripPackYourBags' },
+    { label: t('preTrip', 'item5'), route: 'PreTripSetTravelReminders' },
+    { label: t('preTrip', 'item6'), route: 'PreTripAirportTransfer' },
+    { label: t('preTrip', 'item7'), route: 'PreTripHealthSafety' },
+  ];
+
   return (
     <View style={commonStyles.hubContainer}>
       <ScrollView
@@ -25,7 +28,7 @@ const PreTripScreen = ({ navigation }: any) => {
           style={commonStyles.hubImage}
         />
 
-        <Text style={commonStyles.hubTitle}>Pre-Trip Inspection</Text>
+        <Text style={commonStyles.hubTitle}>{t('preTrip', 'title')}</Text>
 
         <View style={commonStyles.hubListContainer}>
           {items.map((item, index) => (
@@ -51,7 +54,7 @@ const PreTripScreen = ({ navigation }: any) => {
           onPress={() => navigation.navigate('ChecklistScreen')}
           activeOpacity={0.85}
         >
-          <Text style={[commonStyles.hubNavButtonTextDark, { color: Colors.primary }]}>Checklist</Text>
+          <Text style={[commonStyles.hubNavButtonTextDark, { color: Colors.primary }]}>{t('common', 'checklist')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity

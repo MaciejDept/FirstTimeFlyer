@@ -4,50 +4,51 @@ import { Checkbox } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { initialWindowMetrics } from 'react-native-safe-area-context';
 import { Colors } from '../commonStyles';
+import { useLanguage } from '../i18n';
 
 const insetBottom = initialWindowMetrics?.insets.bottom ?? 0;
-
-const checklistItems = [
-  {
-    title: 'Pre-Trip Inspection',
-    items: [
-      'Check flight details',
-      'Online check-in and print/save boarding pass',
-      'Check baggage allowance and policies',
-      'Pack your bags',
-      'Set travel reminders',
-      'Confirm transport to airport',
-      'Check health and safety requirements',
-    ],
-  },
-  {
-    title: 'Flight Day',
-    items: [
-      'Arrive at the airport 2-3 hours early',
-      'Check in and drop off luggage',
-      'Go through security',
-      'Find your gate',
-      'Wait for boarding',
-      'Board the plane',
-      'Enjoy the flight!',
-    ],
-  },
-  {
-    title: 'Landing',
-    items: [
-      'Disembark the plane',
-      'Proceed to passport control',
-      'Retrieve your luggage',
-      'Exit the airport',
-      'Choose transportation to your destination',
-    ],
-  },
-];
-
-const totalItems = checklistItems.reduce((acc, s) => acc + s.items.length, 0);
+const TOTAL_ITEMS = 19; // 7 pre-trip + 7 flight day + 5 landing
 
 const ChecklistScreen = ({ navigation }: any) => {
-  const [checkedItems, setCheckedItems] = useState<boolean[]>(new Array(totalItems).fill(false));
+  const { t } = useLanguage();
+  const [checkedItems, setCheckedItems] = useState<boolean[]>(new Array(TOTAL_ITEMS).fill(false));
+
+  const checklistItems = [
+    {
+      title: t('checklist', 'sectionPreTrip'),
+      items: [
+        t('checklist', 'checkPreTrip1'),
+        t('checklist', 'checkPreTrip2'),
+        t('checklist', 'checkPreTrip3'),
+        t('checklist', 'checkPreTrip4'),
+        t('checklist', 'checkPreTrip5'),
+        t('checklist', 'checkPreTrip6'),
+        t('checklist', 'checkPreTrip7'),
+      ],
+    },
+    {
+      title: t('checklist', 'sectionFlightDay'),
+      items: [
+        t('checklist', 'checkFlightDay1'),
+        t('checklist', 'checkFlightDay2'),
+        t('checklist', 'checkFlightDay3'),
+        t('checklist', 'checkFlightDay4'),
+        t('checklist', 'checkFlightDay5'),
+        t('checklist', 'checkFlightDay6'),
+        t('checklist', 'checkFlightDay7'),
+      ],
+    },
+    {
+      title: t('checklist', 'sectionLanding'),
+      items: [
+        t('checklist', 'checkLanding1'),
+        t('checklist', 'checkLanding2'),
+        t('checklist', 'checkLanding3'),
+        t('checklist', 'checkLanding4'),
+        t('checklist', 'checkLanding5'),
+      ],
+    },
+  ];
 
   useEffect(() => {
     const loadState = async () => {
@@ -81,8 +82,8 @@ const ChecklistScreen = ({ navigation }: any) => {
   };
 
   const checkedCount = checkedItems.filter(Boolean).length;
-  const isAllChecked = checkedCount === totalItems;
-  const progress = checkedCount / totalItems;
+  const isAllChecked = checkedCount === TOTAL_ITEMS;
+  const progress = checkedCount / TOTAL_ITEMS;
 
   return (
     <View style={styles.container}>
@@ -90,18 +91,15 @@ const ChecklistScreen = ({ navigation }: any) => {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Header */}
-        <Text style={styles.title}>Travel Checklist</Text>
+        <Text style={styles.title}>{t('checklist', 'title')}</Text>
 
-        {/* Progress bar */}
         <View style={styles.progressRow}>
           <View style={styles.progressTrack}>
             <View style={[styles.progressFill, { width: `${progress * 100}%` as any }]} />
           </View>
-          <Text style={styles.progressLabel}>{checkedCount}/{totalItems}</Text>
+          <Text style={styles.progressLabel}>{checkedCount}/{TOTAL_ITEMS}</Text>
         </View>
 
-        {/* Sections */}
         {checklistItems.map((section, sectionIndex) => {
           const sectionOffset = checklistItems
             .slice(0, sectionIndex)
@@ -140,17 +138,15 @@ const ChecklistScreen = ({ navigation }: any) => {
         })}
       </ScrollView>
 
-      {/* Scroll fade */}
       <View style={styles.scrollHint} />
 
-      {/* Button row */}
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.navButton, styles.backButton]}
           onPress={() => navigation.goBack()}
           activeOpacity={0.8}
         >
-          <Text style={[styles.navButtonText, styles.navButtonTextDark]}>Back</Text>
+          <Text style={[styles.navButtonText, styles.navButtonTextDark]}>{t('common', 'back')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -160,7 +156,7 @@ const ChecklistScreen = ({ navigation }: any) => {
           activeOpacity={0.85}
         >
           <Text style={[styles.navButtonText, !isAllChecked && styles.disabledText]}>
-            Complete ✓
+            {t('common', 'complete')}
           </Text>
         </TouchableOpacity>
       </View>

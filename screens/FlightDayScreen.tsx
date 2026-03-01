@@ -1,18 +1,21 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView, StyleSheet } from 'react-native';
 import commonStyles, { Colors } from '../commonStyles';
-
-const items = [
-  { label: 'Arrive at the airport 2 to 3 hours early', route: 'FlightDayArriveAtAirport' },
-  { label: 'Check in and drop off luggage', route: 'FlightDayCheckIn' },
-  { label: 'Go through security', route: 'FlightDaySecurityCheck' },
-  { label: 'Find your gate', route: 'FlightDayFindGate' },
-  { label: 'Wait for boarding', route: 'FlightDayWaitForBoarding' },
-  { label: 'Board the plane', route: 'FlightDayBoardPlane' },
-  { label: 'Enjoy the flight!', route: 'FlightDayEnjoyFlight' },
-];
+import { useLanguage } from '../i18n';
 
 const FlightDayScreen = ({ navigation }: any) => {
+  const { t } = useLanguage();
+
+  const items = [
+    { label: t('flightDay', 'item1'), route: 'FlightDayArriveAtAirport' },
+    { label: t('flightDay', 'item2'), route: 'FlightDayCheckIn' },
+    { label: t('flightDay', 'item3'), route: 'FlightDaySecurityCheck' },
+    { label: t('flightDay', 'item4'), route: 'FlightDayFindGate' },
+    { label: t('flightDay', 'item5'), route: 'FlightDayWaitForBoarding' },
+    { label: t('flightDay', 'item6'), route: 'FlightDayBoardPlane' },
+    { label: t('flightDay', 'item7'), route: 'FlightDayEnjoyFlight' },
+  ];
+
   return (
     <View style={commonStyles.hubContainer}>
       <ScrollView
@@ -25,7 +28,7 @@ const FlightDayScreen = ({ navigation }: any) => {
           style={commonStyles.hubImage}
         />
 
-        <Text style={commonStyles.hubTitle}>Flight Day</Text>
+        <Text style={commonStyles.hubTitle}>{t('flightDay', 'title')}</Text>
 
         <View style={commonStyles.hubListContainer}>
           {items.map((item, index) => (
@@ -51,7 +54,7 @@ const FlightDayScreen = ({ navigation }: any) => {
           onPress={() => navigation.navigate('ChecklistScreen')}
           activeOpacity={0.85}
         >
-          <Text style={[commonStyles.hubNavButtonTextDark, { color: Colors.primary }]}>Checklist</Text>
+          <Text style={[commonStyles.hubNavButtonTextDark, { color: Colors.primary }]}>{t('common', 'checklist')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity

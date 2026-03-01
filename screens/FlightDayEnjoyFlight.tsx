@@ -1,43 +1,45 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
 import commonStyles from '../commonStyles'; // Import the common styles
+import { useLanguage } from '../i18n';
 
 const FlightDayEnjoyFlight = ({ navigation }: any) => {
+  const { t } = useLanguage();
   return (
     <View style={commonStyles.container}>
       {/* Image */}
-      <Image 
-        source={require('../assets/page_logos/13.png')} 
-        style={commonStyles.image}  
+      <Image
+        source={require('../assets/page_logos/13.png')}
+        style={commonStyles.image}
       />
 
-      <Text style={commonStyles.title}>Enjoy the Flight</Text>
-      
-      <ScrollView 
-        style={commonStyles.scrollContainer} 
+      <Text style={commonStyles.title}>{t('enjoyFlight', 'title')}</Text>
+
+      <ScrollView
+        style={commonStyles.scrollContainer}
         contentContainerStyle={commonStyles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
         {/* Bullet points container */}
         <View style={commonStyles.listContainer}>
-          <Text style={commonStyles.boldText}>Once you’re settled:</Text>
+          <Text style={commonStyles.boldText}>{t('enjoyFlight', 'heading1')}</Text>
           <Text style={commonStyles.paragraphText}>
-            Well done! You’ve made it through the tough part, and now it’s time to relax and enjoy your flight. Listen carefully to the safety demonstration from the flight attendants—they’re there to ensure you have a safe and comfortable journey. Keep your seatbelt fastened when seated, and don’t hesitate to ask the crew if you need anything.
+            {t('enjoyFlight', 'body1')}
           </Text>
 
-          <Text style={commonStyles.boldText}>Stay hydrated:</Text>
+          <Text style={commonStyles.boldText}>{t('enjoyFlight', 'heading2')}</Text>
           <Text style={commonStyles.paragraphText}>
-            Airplane cabins can be quite dry, so drinking water throughout your flight will help you feel refreshed. If it’s a long flight, try to stretch your legs occasionally or take a short walk up and down the aisle when it’s safe to do so. This helps prevent stiffness and keeps you comfortable.
+            {t('enjoyFlight', 'body2')}
           </Text>
 
-          <Text style={commonStyles.boldText}>In-Flight Comfort:</Text>
+          <Text style={commonStyles.boldText}>{t('enjoyFlight', 'heading3')}</Text>
           <Text style={commonStyles.paragraphText}>
-            Feel free to adjust your seat for comfort, but be mindful of the person behind you. If you brought entertainment—like a book, music, or a movie—now is a great time to enjoy it. Some flights also offer onboard entertainment, so check your seat screen if available.
+            {t('enjoyFlight', 'body3')}
           </Text>
 
-          <Text style={commonStyles.boldText}>Almost There!</Text>
+          <Text style={commonStyles.boldText}>{t('enjoyFlight', 'heading4')}</Text>
           <Text style={commonStyles.paragraphText}>
-            You’re doing amazingly! Take a deep breath, relax, and before you know it, you’ll be landing at your destination. Safe travels! 😊✈️
+            {t('enjoyFlight', 'body4')}
           </Text>
         </View>
       </ScrollView>
@@ -46,19 +48,19 @@ const FlightDayEnjoyFlight = ({ navigation }: any) => {
 
       <View style={commonStyles.buttonContainer}>
         {/* Back Button */}
-        <TouchableOpacity 
-          style={[commonStyles.navButton, commonStyles.backButton]} 
+        <TouchableOpacity
+          style={[commonStyles.navButton, commonStyles.backButton]}
           onPress={() => navigation.goBack()}
         >
-          <Text style={commonStyles.navButtonTextDark}>Back</Text>
+          <Text style={commonStyles.navButtonTextDark}>{t('common', 'back')}</Text>
         </TouchableOpacity>
 
         {/* Checklist Button */}
-        <TouchableOpacity 
-          style={[commonStyles.navButton, commonStyles.checklistButton]} 
+        <TouchableOpacity
+          style={[commonStyles.navButton, commonStyles.checklistButton]}
           onPress={() => navigation.navigate('ChecklistScreen')}
         >
-          <Text style={commonStyles.navButtonText}>Checklist</Text>
+          <Text style={commonStyles.navButtonText}>{t('common', 'checklist')}</Text>
         </TouchableOpacity>
       </View>
     </View>

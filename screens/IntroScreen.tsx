@@ -2,16 +2,19 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { initialWindowMetrics } from 'react-native-safe-area-context';
 import commonStyles, { Colors } from '../commonStyles';
+import { useLanguage } from '../i18n';
 
 const insetBottom = initialWindowMetrics?.insets.bottom ?? 0;
 
-const sections = [
-  { label: 'Pre-Trip Inspection', route: 'PreTripScreen' },
-  { label: 'Flight Day', route: 'FlightDayScreen' },
-  { label: 'Landing', route: 'LandingScreen' },
-];
-
 const IntroScreen = ({ navigation }: any) => {
+  const { t } = useLanguage();
+
+  const sections = [
+    { label: t('intro', 'sectionPreTrip'), route: 'PreTripScreen' },
+    { label: t('intro', 'sectionFlightDay'), route: 'FlightDayScreen' },
+    { label: t('intro', 'sectionLanding'), route: 'LandingScreen' },
+  ];
+
   return (
     <View style={commonStyles.hubContainer}>
       <ScrollView
@@ -20,16 +23,14 @@ const IntroScreen = ({ navigation }: any) => {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.innerContainer}>
-          <Text style={commonStyles.hubTitle}>Welcome!</Text>
+          <Text style={commonStyles.hubTitle}>{t('intro', 'title')}</Text>
 
           <Image
             source={require('../assets/welcome_dodo.png')}
             style={styles.image}
           />
 
-          <Text style={styles.introText}>
-            Flying for the first time can feel overwhelming — but it doesn't have to be.{'\n\n'}We'll walk you through every step, from packing your bags to landing at your destination.{'\n\n'}Your journey has three phases:
-          </Text>
+          <Text style={styles.introText}>{t('intro', 'body1')}</Text>
 
           <View style={styles.sectionList}>
             {sections.map((item, index) => (
@@ -46,9 +47,7 @@ const IntroScreen = ({ navigation }: any) => {
             ))}
           </View>
 
-          <Text style={styles.introText}>
-            Follow along, tick off each step on the checklist, and you'll be a pro by the time you land.{'\n\n'}Even the dodo learned to soar — just in its own way! 🦤
-          </Text>
+          <Text style={styles.introText}>{t('intro', 'body2')}</Text>
         </View>
       </ScrollView>
 
@@ -60,7 +59,7 @@ const IntroScreen = ({ navigation }: any) => {
           onPress={() => navigation.navigate('WelcomeScreen')}
           activeOpacity={0.8}
         >
-          <Text style={commonStyles.hubNavButtonTextDark}>Back</Text>
+          <Text style={commonStyles.hubNavButtonTextDark}>{t('common', 'back')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -68,7 +67,7 @@ const IntroScreen = ({ navigation }: any) => {
           onPress={() => navigation.navigate('PreTripScreen')}
           activeOpacity={0.85}
         >
-          <Text style={commonStyles.hubNavButtonText}>Get Started</Text>
+          <Text style={commonStyles.hubNavButtonText}>{t('common', 'getStarted')}</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -2,10 +2,13 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { initialWindowMetrics } from 'react-native-safe-area-context';
 import { Colors } from '../commonStyles';
+import { useLanguage } from '../i18n';
 
 const insetBottom = initialWindowMetrics?.insets.bottom ?? 0;
 
 const Congratulations = ({ navigation }: any) => {
+  const { t } = useLanguage();
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -18,14 +21,14 @@ const Congratulations = ({ navigation }: any) => {
         />
 
         <Text style={styles.emoji}>🎉</Text>
-        <Text style={styles.title}>Congratulations!</Text>
+        <Text style={styles.title}>{t('congratulations', 'title')}</Text>
 
         <View style={styles.messageCard}>
-          <Text style={styles.message}>You've successfully completed your first flight!</Text>
+          <Text style={styles.message}>{t('congratulations', 'message1')}</Text>
           <View style={styles.divider} />
-          <Text style={styles.message}>Welcome to the world of travel.</Text>
+          <Text style={styles.message}>{t('congratulations', 'message2')}</Text>
           <View style={styles.divider} />
-          <Text style={styles.message}>We can't wait to see you soar again on your next adventure!</Text>
+          <Text style={styles.message}>{t('congratulations', 'message3')}</Text>
         </View>
       </ScrollView>
 
@@ -37,15 +40,7 @@ const Congratulations = ({ navigation }: any) => {
           onPress={() => navigation.navigate('WelcomeScreen')}
           activeOpacity={0.85}
         >
-          <Text style={styles.buttonText}>🏠  Home</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[styles.button, styles.backButton]}
-          onPress={() => navigation.goBack()}
-          activeOpacity={0.8}
-        >
-          <Text style={[styles.buttonText, styles.buttonTextDark]}>Back</Text>
+          <Text style={styles.buttonText}>{t('common', 'home')}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -63,7 +58,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 28,
     paddingTop: 60,
-    paddingBottom: 180,
+    paddingBottom: 220,
   },
   image: {
     width: 260,

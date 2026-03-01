@@ -1,16 +1,19 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView, StyleSheet } from 'react-native';
 import commonStyles, { Colors } from '../commonStyles';
-
-const items = [
-  { label: 'Disembark the plane and follow signs to airport', route: 'LandingDisembarkPlane' },
-  { label: 'Proceed to passport control', route: 'LandingPassportControl' },
-  { label: 'Retrieve your luggage', route: 'LandingRetrieveLuggage' },
-  { label: 'Exit the airport', route: 'LandingExitAirport' },
-  { label: 'Choose transportation to your destination', route: 'LandingChooseTransport' },
-];
+import { useLanguage } from '../i18n';
 
 const LandingScreen = ({ navigation }: any) => {
+  const { t } = useLanguage();
+
+  const items = [
+    { label: t('landing', 'item1'), route: 'LandingDisembarkPlane' },
+    { label: t('landing', 'item2'), route: 'LandingPassportControl' },
+    { label: t('landing', 'item3'), route: 'LandingRetrieveLuggage' },
+    { label: t('landing', 'item4'), route: 'LandingExitAirport' },
+    { label: t('landing', 'item5'), route: 'LandingChooseTransport' },
+  ];
+
   return (
     <View style={commonStyles.hubContainer}>
       <ScrollView
@@ -23,7 +26,7 @@ const LandingScreen = ({ navigation }: any) => {
           style={commonStyles.hubImage}
         />
 
-        <Text style={commonStyles.hubTitle}>Landing</Text>
+        <Text style={commonStyles.hubTitle}>{t('landing', 'title')}</Text>
 
         <View style={commonStyles.hubListContainer}>
           {items.map((item, index) => (
@@ -49,7 +52,7 @@ const LandingScreen = ({ navigation }: any) => {
           onPress={() => navigation.navigate('ChecklistScreen')}
           activeOpacity={0.85}
         >
-          <Text style={[commonStyles.hubNavButtonTextDark, { color: Colors.primary }]}>Checklist</Text>
+          <Text style={[commonStyles.hubNavButtonTextDark, { color: Colors.primary }]}>{t('common', 'checklist')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity

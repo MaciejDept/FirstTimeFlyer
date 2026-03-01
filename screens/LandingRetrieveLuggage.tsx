@@ -1,43 +1,45 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
 import commonStyles from '../commonStyles'; // Import common styles
+import { useLanguage } from '../i18n';
 
 const LandingRetrieveLuggage = ({ navigation }: any) => {
+  const { t } = useLanguage();
   return (
     <View style={commonStyles.container}>
       {/* Image */}
-      <Image 
+      <Image
         source={require('../assets/page_logos/16.png')}
-        style={commonStyles.image}  
+        style={commonStyles.image}
       />
 
-      <Text style={commonStyles.title}>Retrieve Your Luggage</Text>
-      
-      <ScrollView 
-        style={commonStyles.scrollContainer} 
+      <Text style={commonStyles.title}>{t('retrieveLuggage', 'title')}</Text>
+
+      <ScrollView
+        style={commonStyles.scrollContainer}
         contentContainerStyle={commonStyles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
         {/* Bullet points container */}
         <View style={commonStyles.listContainer}>
-          <Text style={commonStyles.boldText}>Baggage Claim:</Text>
+          <Text style={commonStyles.boldText}>{t('retrieveLuggage', 'heading1')}</Text>
           <Text style={commonStyles.paragraphText}>
-            Head to the Baggage Claim area and locate the carousel corresponding to your flight. It’s easy to feel a little unsure of where to go, but don’t worry—there will be plenty of signs to guide you.
+            {t('retrieveLuggage', 'body1')}
           </Text>
 
-          <Text style={commonStyles.boldText}>Flight Number:</Text>
+          <Text style={commonStyles.boldText}>{t('retrieveLuggage', 'heading2')}</Text>
           <Text style={commonStyles.paragraphText}>
-            Check the flight number displayed above the carousel to ensure you’re at the right one. The flight number should match the one on your boarding pass, so you’re on the right track!
+            {t('retrieveLuggage', 'body2')}
           </Text>
 
-          <Text style={commonStyles.boldText}>Luggage Check:</Text>
+          <Text style={commonStyles.boldText}>{t('retrieveLuggage', 'heading3')}</Text>
           <Text style={commonStyles.paragraphText}>
-            Once your luggage appears, take your bag and check that it matches the baggage tag. If your bag looks different from the tag or is damaged, it’s okay! You’re not alone—just stay calm, and the staff will help you sort things out.
+            {t('retrieveLuggage', 'body3')}
           </Text>
 
-          <Text style={commonStyles.boldText}>Damaged or Missing Bags:</Text>
+          <Text style={commonStyles.boldText}>{t('retrieveLuggage', 'heading4')}</Text>
           <Text style={commonStyles.paragraphText}>
-            If your bag doesn’t appear or is damaged, report it to the baggage desk immediately. They’re experienced and will take care of you. Just let them know your flight details, and they’ll guide you through the next steps. It’s a common part of travel, and it will be handled quickly.
+            {t('retrieveLuggage', 'body4')}
           </Text>
         </View>
       </ScrollView>
@@ -46,19 +48,19 @@ const LandingRetrieveLuggage = ({ navigation }: any) => {
 
       <View style={commonStyles.buttonContainer}>
         {/* Back Button */}
-        <TouchableOpacity 
-          style={[commonStyles.navButton, commonStyles.backButton]} 
+        <TouchableOpacity
+          style={[commonStyles.navButton, commonStyles.backButton]}
           onPress={() => navigation.goBack()}
         >
-          <Text style={commonStyles.navButtonTextDark}>Back</Text>
+          <Text style={commonStyles.navButtonTextDark}>{t('common', 'back')}</Text>
         </TouchableOpacity>
 
         {/* Checklist Button */}
-        <TouchableOpacity 
-          style={[commonStyles.navButton, commonStyles.checklistButton]} 
+        <TouchableOpacity
+          style={[commonStyles.navButton, commonStyles.checklistButton]}
           onPress={() => navigation.navigate('ChecklistScreen')}
         >
-          <Text style={commonStyles.navButtonText}>Checklist</Text>
+          <Text style={commonStyles.navButtonText}>{t('common', 'checklist')}</Text>
         </TouchableOpacity>
       </View>
     </View>
