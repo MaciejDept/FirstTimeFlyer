@@ -4,6 +4,7 @@ import { initialWindowMetrics } from 'react-native-safe-area-context';
 import { Colors } from '../commonStyles';
 import { useLanguage, LANGUAGES } from '../i18n';
 
+const insetTop = initialWindowMetrics?.insets.top ?? 0;
 const insetBottom = initialWindowMetrics?.insets.bottom ?? 0;
 
 const WelcomeScreen = ({ navigation }: any) => {
@@ -14,21 +15,34 @@ const WelcomeScreen = ({ navigation }: any) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.topSection}>
+
+      {/* ── Title & tagline ── */}
+      <View style={styles.textSection}>
+        <Text style={styles.title}>{t('welcome', 'title')}</Text>
+        <Text style={styles.subheading}>{t('welcome', 'subheading')}</Text>
+      </View>
+
+      {/* ── Hero image ── */}
+      <View style={styles.imageSection}>
         <Image
           source={require('../assets/welcome_home.png')}
           style={styles.image}
         />
       </View>
 
-      <View style={styles.textSection}>
-        <Text style={styles.title}>{t('welcome', 'title')}</Text>
-        <Text style={styles.subheading}>{t('welcome', 'subheading')}</Text>
+      {/* ── CTA button ── */}
+      <View style={styles.buttonSection}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('IntroScreen')}
+          activeOpacity={0.85}
+        >
+          <Text style={styles.buttonText}>{t('welcome', 'cta')}</Text>
+        </TouchableOpacity>
       </View>
 
-      {/* Language dropdown trigger */}
+      {/* ── Language picker ── */}
       <View style={styles.pickerSection}>
-        <Text style={styles.pickerLabel}>{t('welcome', 'selectLanguage')}</Text>
         <TouchableOpacity
           style={styles.dropdownTrigger}
           onPress={() => setDropdownOpen(true)}
@@ -40,7 +54,7 @@ const WelcomeScreen = ({ navigation }: any) => {
         </TouchableOpacity>
       </View>
 
-      {/* Dropdown modal */}
+      {/* ── Dropdown modal ── */}
       <Modal
         visible={dropdownOpen}
         transparent
@@ -86,16 +100,6 @@ const WelcomeScreen = ({ navigation }: any) => {
           </View>
         </TouchableOpacity>
       </Modal>
-
-      <View style={[styles.buttonWrapper, { bottom: insetBottom + 120 }]}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('IntroScreen')}
-          activeOpacity={0.85}
-        >
-          <Text style={styles.buttonText}>{t('welcome', 'cta')}</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 };
@@ -105,50 +109,83 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.background,
     alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: insetTop + 80,
+    paddingBottom: insetBottom + 32,
+    paddingHorizontal: 28,
   },
-  topSection: {
-    width: '100%',
-    alignItems: 'center',
-    paddingTop: 80,
-  },
-  image: {
-    width: 300,
-    height: 300,
-    resizeMode: 'contain',
-  },
+
+  // Title & tagline
   textSection: {
     alignItems: 'center',
-    paddingHorizontal: 32,
-    marginTop: 36,
+    width: '100%',
+    marginBottom: 8,
   },
   title: {
-    fontSize: 36,
+    fontSize: 45,
     fontWeight: '800',
     color: Colors.textPrimary,
     textAlign: 'center',
-    letterSpacing: 0.5,
-    marginBottom: 12,
+    letterSpacing: 0.4,
+    marginBottom: 10,
   },
   subheading: {
-    fontSize: 17,
+    fontSize: 14,
     color: Colors.textSecondary,
     textAlign: 'center',
-    lineHeight: 26,
+    lineHeight: 24,
   },
+
+  // Hero image
+  imageSection: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    marginVertical: 32,
+  },
+  image: {
+    width: 350,
+    height: 350,
+    resizeMode: 'contain',
+  },
+
+  // CTA button
+  buttonSection: {
+    width: '100%',
+    marginBottom: 12,
+  },
+  button: {
+    backgroundColor: Colors.primary,
+    paddingVertical: 18,
+    borderRadius: 16,
+    width: '100%',
+    alignItems: 'center',
+    shadowColor: Colors.primary,
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 12,
+    elevation: 4,
+  },
+  buttonText: {
+    fontSize: 18,
+    color: Colors.white,
+    fontWeight: '800',
+    letterSpacing: 0.4,
+  },
+
+  // Language picker
   pickerSection: {
     width: '100%',
-    marginTop: 24,
-    paddingHorizontal: 32,
   },
   pickerLabel: {
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: '600',
     color: Colors.textSecondary,
     textTransform: 'uppercase',
-    letterSpacing: 0.8,
-    marginBottom: 10,
+    letterSpacing: 0.9,
+    marginBottom: 8,
+    textAlign: 'center',
   },
-  // Dropdown trigger button
   dropdownTrigger: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -173,6 +210,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: Colors.textSecondary,
   },
+
   // Modal backdrop
   modalBackdrop: {
     flex: 1,
@@ -180,6 +218,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 40,
   },
+
   // Dropdown list
   dropdownList: {
     backgroundColor: Colors.surface,
@@ -220,32 +259,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
     color: Colors.primary,
-  },
-  // CTA button
-  buttonWrapper: {
-    position: 'absolute',
-    left: 32,
-    right: 32,
-    alignItems: 'center',
-  },
-  button: {
-    backgroundColor: Colors.primary,
-    paddingVertical: 18,
-    paddingHorizontal: 40,
-    borderRadius: 16,
-    width: '100%',
-    alignItems: 'center',
-    shadowColor: Colors.primary,
-    shadowOpacity: 0.25,
-    shadowOffset: { width: 0, height: 4 },
-    shadowRadius: 12,
-    elevation: 4,
-  },
-  buttonText: {
-    fontSize: 18,
-    color: Colors.white,
-    fontWeight: '800',
-    letterSpacing: 0.4,
   },
 });
 
